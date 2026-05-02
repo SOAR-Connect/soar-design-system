@@ -4,85 +4,140 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ============================================================
- * Soar Design System — theme tokens (single source of truth)
- * Edit colors / radii / typography here. Tokens Studio syncs to
- * /tokens/*.json which mirror these values for Figma round-trip.
+ * SOAR Connect — Foundation v2 tokens (single source of truth)
+ * Synced from Figma "🚀 Foundation" page (file 0u7EjU8sbCqCBmgPN7ufBO).
+ * Do not edit individual values here unless re-syncing from Figma.
+ * Tokens Studio mirror: /tokens/soar.tokens.json
  * ============================================================ */
+
 :root {
-  --radius: 0.625rem;
+  /* Radii ---------------------------------------------------- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;
+  --radius: var(--radius-md); /* shadcn alias */
 
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.21 0.006 285.885);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.705 0.015 286.067);
+  /* Spacing scale (preserved from Figma — see TODOs) -------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 6px;   /* TODO(figma): expected 24px */
+  --space-8: 32px;
+  --space-10: 10px; /* TODO(figma): expected 40px */
+  --space-12: 48px;
+  --space-14: 14px; /* TODO(figma): expected 56px */
+  --space-16: 64px;
+  --space-18: 18px; /* TODO(figma): expected 72px */
 
-  /* Soar brand accents — wired through `--brand-*`. Override per project. */
-  --brand-1: oklch(0.7 0.18 250);
-  --brand-2: oklch(0.65 0.2 320);
+  /* Type families ------------------------------------------- */
+  --font-heading: "Fraunces", ui-serif, Georgia, serif;
+  --font-body: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  /* LIGHT — semantic colors --------------------------------- */
+  --background: #fbf6ed;
+  --foreground: #2a1108;
+  --card: #fdf9f1;
+  --card-foreground: #2a1108;
+  --popover: #fdf9f1;
+  --popover-foreground: #2a1108;
+  --primary: #8b1f1a;
+  --primary-foreground: #fbf6ed;
+  --secondary: #ead7b8;
+  --secondary-foreground: #2a1108;
+  --muted: #f0e6d4;
+  --muted-foreground: #7a5840;
+  --accent: #e89b1a;
+  --accent-foreground: #2a1108;
+  --destructive: #c4451f;
+  --destructive-foreground: #fbf6ed;
+  --border: #e3d3b8;
+  --input: #e3d3b8;
+  --ring: #8b1f1a;
 
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.21 0.006 285.885);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.705 0.015 286.067);
+  /* LIGHT — sidebar surface --------------------------------- */
+  --sidebar: #f4efe5;
+  --sidebar-foreground: #0c1626;
+  --sidebar-accent: #ede5d3;
+  --sidebar-border: #dfd5c2;
+
+  /* LIGHT — brand accent palette ---------------------------- */
+  --accent-blue: #0d2845;
+  --accent-indigo: #3a4f73;
+  --accent-green: #5a7d52;
+  --accent-amber: #e89b1a;
+  --accent-rose: #a8493a;
+  --accent-violet: #6b5b8c;
+
+  /* LIGHT — status ----------------------------------------- */
+  --status-success: #5a7d52;
+  --status-warning: #b8860b;
+  --status-error: #c0392b;
+  --status-info: #0d2845;
+
+  /* LIGHT — misc ------------------------------------------- */
+  --badge-help: #e89b1a;
+
+  /* Shadow (Figma "site" effect) --------------------------- */
+  --shadow-site: 0 0 34px 10px rgb(0 0 0 / 0.10);
 }
 
 .dark {
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.92 0.004 286.32);
-  --primary-foreground: oklch(0.21 0.006 285.885);
-  --secondary: oklch(0.274 0.006 286.033);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.552 0.016 285.938);
+  --radius-xs: 0; /* Only radius that flips per Figma */
 
-  --brand-1: oklch(0.78 0.16 250);
-  --brand-2: oklch(0.74 0.18 320);
+  /* DARK — semantic colors --------------------------------- */
+  --background: #1a0808;
+  --foreground: #f7ecd9;
+  --card: #221008;
+  --card-foreground: #f7ecd9;
+  --popover: #2a1812;
+  --popover-foreground: #f7ecd9;
+  --primary: #cc4a3a;
+  --primary-foreground: #1a0808;
+  --secondary: #3a2018;
+  --secondary-foreground: #f7ecd9;
+  --muted: #2a1812;
+  --muted-foreground: #a89070;
+  --accent: #f5b94a;
+  --accent-foreground: #1a0808;
+  --destructive: #e8542a;
+  --destructive-foreground: #f7ecd9;
+  --border: #3a2418;
+  --input: #3a2418;
+  --ring: #cc4a3a;
 
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.552 0.016 285.938);
+  /* DARK — sidebar surface --------------------------------- */
+  --sidebar: #0c1626;
+  --sidebar-foreground: #f5f1e8;
+  --sidebar-accent: #172238;
+  --sidebar-border: #1a2538;
+
+  /* DARK — brand accent palette ---------------------------- */
+  --accent-blue: #6b8fb8;
+  --accent-indigo: #7b8db5;
+  --accent-green: #86a87d;
+  --accent-amber: #f5b94a;
+  --accent-rose: #c87b6c;
+  --accent-violet: #9b8cc4;
+
+  /* DARK — status ------------------------------------------ */
+  --status-success: #86a87d;
+  --status-warning: #d4a82a;
+  --status-error: #e74c3c;
+  --status-info: #6b8fb8;
+
+  /* DARK — misc -------------------------------------------- */
+  --badge-help: #f5b94a;
 }
 
+/* Tailwind 4 theme bridge — exposes vars as utility classes
+   (e.g. bg-primary, text-accent-rose, rounded-xl, font-heading) */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -99,40 +154,84 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-brand-1: var(--brand-1);
-  --color-brand-2: var(--brand-2);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
+
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
   --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-indigo: var(--accent-indigo);
+  --color-accent-green: var(--accent-green);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-rose: var(--accent-rose);
+  --color-accent-violet: var(--accent-violet);
 
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+  --color-status-success: var(--status-success);
+  --color-status-warning: var(--status-warning);
+  --color-status-error: var(--status-error);
+  --color-status-info: var(--status-info);
+
+  --color-badge-help: var(--badge-help);
+
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-full: var(--radius-full);
+
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-heading);
+  --font-mono: var(--font-mono);
 
   --animate-shimmer: shimmer 2s linear infinite;
   --animate-marquee: marquee var(--duration, 40s) linear infinite;
-  @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
-  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(calc(-100% - var(--gap, 1rem))); } }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-100% - var(--gap, 1rem))); }
+  }
 }
 
 @layer base {
   * { border-color: var(--border); }
-  body { background: var(--background); color: var(--foreground); }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body);
+  }
+  h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
+}
+
+/* Text style utilities — mirror Figma text/* styles 1:1 */
+@layer utilities {
+  .text-display          { font: 700 48px/56px var(--font-heading); letter-spacing: -1px; }
+  .text-h1               { font: 700 36px/44px var(--font-heading); letter-spacing: -0.5px; }
+  .text-h2               { font: 700 24px/32px var(--font-heading); letter-spacing: -0.25px; }
+  .text-h3               { font: 700 18px/24px var(--font-heading); }
+  .text-h4               { font: 700 16px/24px var(--font-heading); }
+  .text-body-lg          { font: 400 16px/24px var(--font-body); }
+  .text-body-lg-medium   { font: 500 16px/24px var(--font-body); }
+  .text-body             { font: 400 14px/20px var(--font-body); }
+  .text-body-medium      { font: 500 14px/20px var(--font-body); }
+  .text-body-semibold    { font: 700 14px/20px var(--font-body); }
+  .text-body-sm          { font: 400 13px/18px var(--font-body); }
+  .text-body-sm-medium   { font: 500 13px/18px var(--font-body); }
+  .text-small            { font: 400 12px/16px var(--font-body); }
+  .text-small-medium     { font: 500 12px/16px var(--font-body); }
+  .text-small-semibold   { font: 700 12px/16px var(--font-body); }
+  .text-caption          { font: 400 11px/14px var(--font-body); }
+  .text-caption-medium   { font: 500 11px/14px var(--font-body); }
+  .text-overline         { font: 500 10px/14px var(--font-body); letter-spacing: 0.6px; text-transform: uppercase; }
+  .text-mono             { font: 400 13px/18px var(--font-mono); }
+  .text-mono-sm          { font: 400 11px/14px var(--font-mono); }
 }
