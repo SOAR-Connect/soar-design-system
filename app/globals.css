@@ -21,19 +21,19 @@
   --radius-full: 9999px;
   --radius: var(--radius-md); /* shadcn alias */
 
-  /* Spacing scale (preserved from Figma — see TODOs) -------- */
+  /* Spacing scale (4× grid, synced from Figma) -------------- */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
   --space-4: 16px;
   --space-5: 20px;
-  --space-6: 6px;   /* TODO(figma): expected 24px */
+  --space-6: 24px;
   --space-8: 32px;
-  --space-10: 10px; /* TODO(figma): expected 40px */
+  --space-10: 40px;
   --space-12: 48px;
-  --space-14: 14px; /* TODO(figma): expected 56px */
+  --space-14: 56px;
   --space-16: 64px;
-  --space-18: 18px; /* TODO(figma): expected 72px */
+  --space-18: 72px;
 
   /* Type families ------------------------------------------- */
   --font-heading: "Fraunces", ui-serif, Georgia, serif;
