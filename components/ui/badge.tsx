@@ -2,9 +2,6 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-/**
- * Badge — mirrors Figma "Badge" component set (7 variants).
- */
 const badgeVariants = cva(
   "inline-flex items-center rounded-md border px-2 py-0.5 text-caption-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
   {
@@ -28,7 +25,7 @@ export interface BadgeProps
     VariantProps<typeof badgeVariants> {}
 
 export function Badge({ className, variant, ...props }: BadgeProps) {
-  return <div className={cn(badgeVariants({ variant }), className)} {...props} />;
+  return <div data-slot="badge" className={cn(badgeVariants({ variant }), className)} {...props} />;
 }
 
 export { badgeVariants };

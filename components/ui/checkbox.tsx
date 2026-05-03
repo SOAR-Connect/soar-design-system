@@ -11,6 +11,7 @@ export const Checkbox = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <CheckboxPrimitive.Root
     ref={ref}
+    data-slot="checkbox"
     className={cn(
       "peer size-4 shrink-0 rounded-sm border border-input shadow-sm",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
@@ -21,12 +22,8 @@ export const Checkbox = React.forwardRef<
     )}
     {...props}
   >
-    <CheckboxPrimitive.Indicator className="flex items-center justify-center">
-      {props.checked === "indeterminate" ? (
-        <Minus className="size-3.5" />
-      ) : (
-        <Check className="size-3.5" />
-      )}
+    <CheckboxPrimitive.Indicator data-slot="checkbox-indicator" className="flex items-center justify-center">
+      {props.checked === "indeterminate" ? <Minus className="size-3.5" /> : <Check className="size-3.5" />}
     </CheckboxPrimitive.Indicator>
   </CheckboxPrimitive.Root>
 ));

@@ -6,7 +6,11 @@
 /* ============================================================
  * SOAR Connect — Foundation v2 tokens (single source of truth)
  * Synced from Figma "🚀 Foundation" page (file 0u7EjU8sbCqCBmgPN7ufBO).
- * Do not edit individual values here unless re-syncing from Figma.
+ *
+ * Colors are expressed in OKLCH (shadcn v3 convention) for better
+ * color manipulation. Original Figma hex values are preserved as
+ * inline comments so designers can verify against the source.
+ *
  * Tokens Studio mirror: /tokens/soar.tokens.json
  * ============================================================ */
 
@@ -40,49 +44,49 @@
   --font-body: "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  /* LIGHT — semantic colors --------------------------------- */
-  --background: #fbf6ed;
-  --foreground: #2a1108;
-  --card: #fdf9f1;
-  --card-foreground: #2a1108;
-  --popover: #fdf9f1;
-  --popover-foreground: #2a1108;
-  --primary: #8b1f1a;
-  --primary-foreground: #fbf6ed;
-  --secondary: #ead7b8;
-  --secondary-foreground: #2a1108;
-  --muted: #f0e6d4;
-  --muted-foreground: #7a5840;
-  --accent: #e89b1a;
-  --accent-foreground: #2a1108;
-  --destructive: #c4451f;
-  --destructive-foreground: #fbf6ed;
-  --border: #e3d3b8;
-  --input: #e3d3b8;
-  --ring: #8b1f1a;
+  /* LIGHT — semantic colors (hex shown for designer reference) */
+  --background:             oklch(0.975 0.013 82.4);  /* #fbf6ed */
+  --foreground:             oklch(0.213 0.045 40.4);  /* #2a1108 */
+  --card:                   oklch(0.983 0.011 84.6);  /* #fdf9f1 */
+  --card-foreground:        oklch(0.213 0.045 40.4);  /* #2a1108 */
+  --popover:                oklch(0.983 0.011 84.6);  /* #fdf9f1 */
+  --popover-foreground:     oklch(0.213 0.045 40.4);  /* #2a1108 */
+  --primary:                oklch(0.420 0.144 28.0);  /* #8b1f1a */
+  --primary-foreground:     oklch(0.975 0.013 82.4);  /* #fbf6ed */
+  --secondary:              oklch(0.887 0.046 80.0);  /* #ead7b8 */
+  --secondary-foreground:   oklch(0.213 0.045 40.4);  /* #2a1108 */
+  --muted:                  oklch(0.928 0.026 82.4);  /* #f0e6d4 */
+  --muted-foreground:       oklch(0.490 0.058 56.1);  /* #7a5840 */
+  --accent:                 oklch(0.748 0.154 72.4);  /* #e89b1a */
+  --accent-foreground:      oklch(0.213 0.045 40.4);  /* #2a1108 */
+  --destructive:            oklch(0.563 0.170 36.5);  /* #c4451f */
+  --destructive-foreground: oklch(0.975 0.013 82.4);  /* #fbf6ed */
+  --border:                 oklch(0.873 0.040 80.9);  /* #e3d3b8 */
+  --input:                  oklch(0.873 0.040 80.9);  /* #e3d3b8 */
+  --ring:                   oklch(0.420 0.144 28.0);  /* #8b1f1a */
 
   /* LIGHT — sidebar surface --------------------------------- */
-  --sidebar: #f4efe5;
-  --sidebar-foreground: #0c1626;
-  --sidebar-accent: #ede5d3;
-  --sidebar-border: #dfd5c2;
+  --sidebar:                oklch(0.953 0.014 84.6);  /* #f4efe5 */
+  --sidebar-foreground:     oklch(0.200 0.036 259.5); /* #0c1626 */
+  --sidebar-accent:         oklch(0.923 0.025 86.9);  /* #ede5d3 */
+  --sidebar-border:         oklch(0.876 0.028 83.5);  /* #dfd5c2 */
 
   /* LIGHT — brand accent palette ---------------------------- */
-  --accent-blue: #0d2845;
-  --accent-indigo: #3a4f73;
-  --accent-green: #5a7d52;
-  --accent-amber: #e89b1a;
-  --accent-rose: #a8493a;
-  --accent-violet: #6b5b8c;
+  --accent-blue:            oklch(0.273 0.063 252.6); /* #0d2845 */
+  --accent-indigo:          oklch(0.427 0.066 260.8); /* #3a4f73 */
+  --accent-green:           oklch(0.551 0.076 139.8); /* #5a7d52 */
+  --accent-amber:           oklch(0.748 0.154 72.4);  /* #e89b1a */
+  --accent-rose:            oklch(0.526 0.129 30.9);  /* #a8493a */
+  --accent-violet:          oklch(0.507 0.078 298.6); /* #6b5b8c */
 
   /* LIGHT — status ----------------------------------------- */
-  --status-success: #5a7d52;
-  --status-warning: #b8860b;
-  --status-error: #c0392b;
-  --status-info: #0d2845;
+  --status-success:         oklch(0.551 0.076 139.8); /* #5a7d52 */
+  --status-warning:         oklch(0.652 0.132 81.6);  /* #b8860b */
+  --status-error:           oklch(0.543 0.174 29.7);  /* #c0392b */
+  --status-info:            oklch(0.273 0.063 252.6); /* #0d2845 */
 
   /* LIGHT — misc ------------------------------------------- */
-  --badge-help: #e89b1a;
+  --badge-help:             oklch(0.748 0.154 72.4);  /* #e89b1a */
 
   /* Shadow (Figma "site" effect) --------------------------- */
   --shadow-site: 0 0 34px 10px rgb(0 0 0 / 0.10);
@@ -91,53 +95,47 @@
 .dark {
   --radius-xs: 0; /* Only radius that flips per Figma */
 
-  /* DARK — semantic colors --------------------------------- */
-  --background: #1a0808;
-  --foreground: #f7ecd9;
-  --card: #221008;
-  --card-foreground: #f7ecd9;
-  --popover: #2a1812;
-  --popover-foreground: #f7ecd9;
-  --primary: #cc4a3a;
-  --primary-foreground: #1a0808;
-  --secondary: #3a2018;
-  --secondary-foreground: #f7ecd9;
-  --muted: #2a1812;
-  --muted-foreground: #a89070;
-  --accent: #f5b94a;
-  --accent-foreground: #1a0808;
-  --destructive: #e8542a;
-  --destructive-foreground: #f7ecd9;
-  --border: #3a2418;
-  --input: #3a2418;
-  --ring: #cc4a3a;
+  --background:             oklch(0.164 0.032 21.2);  /* #1a0808 */
+  --foreground:             oklch(0.947 0.028 81.5);  /* #f7ecd9 */
+  --card:                   oklch(0.197 0.034 44.6);  /* #221008 */
+  --card-foreground:        oklch(0.947 0.028 81.5);  /* #f7ecd9 */
+  --popover:                oklch(0.231 0.031 39.2);  /* #2a1812 */
+  --popover-foreground:     oklch(0.947 0.028 81.5);  /* #f7ecd9 */
+  --primary:                oklch(0.584 0.168 30.0);  /* #cc4a3a */
+  --primary-foreground:     oklch(0.164 0.032 21.2);  /* #1a0808 */
+  --secondary:              oklch(0.276 0.043 37.9);  /* #3a2018 */
+  --secondary-foreground:   oklch(0.947 0.028 81.5);  /* #f7ecd9 */
+  --muted:                  oklch(0.231 0.031 39.2);  /* #2a1812 */
+  --muted-foreground:       oklch(0.667 0.053 74.6);  /* #a89070 */
+  --accent:                 oklch(0.821 0.142 79.6);  /* #f5b94a */
+  --accent-foreground:      oklch(0.164 0.032 21.2);  /* #1a0808 */
+  --destructive:            oklch(0.640 0.191 36.1);  /* #e8542a */
+  --destructive-foreground: oklch(0.947 0.028 81.5);  /* #f7ecd9 */
+  --border:                 oklch(0.285 0.040 49.2);  /* #3a2418 */
+  --input:                  oklch(0.285 0.040 49.2);  /* #3a2418 */
+  --ring:                   oklch(0.584 0.168 30.0);  /* #cc4a3a */
 
-  /* DARK — sidebar surface --------------------------------- */
-  --sidebar: #0c1626;
-  --sidebar-foreground: #f5f1e8;
-  --sidebar-accent: #172238;
-  --sidebar-border: #1a2538;
+  --sidebar:                oklch(0.200 0.036 259.5); /* #0c1626 */
+  --sidebar-foreground:     oklch(0.959 0.013 86.8);  /* #f5f1e8 */
+  --sidebar-accent:         oklch(0.253 0.045 263.3); /* #172238 */
+  --sidebar-border:         oklch(0.264 0.039 261.0); /* #1a2538 */
 
-  /* DARK — brand accent palette ---------------------------- */
-  --accent-blue: #6b8fb8;
-  --accent-indigo: #7b8db5;
-  --accent-green: #86a87d;
-  --accent-amber: #f5b94a;
-  --accent-rose: #c87b6c;
-  --accent-violet: #9b8cc4;
+  --accent-blue:            oklch(0.639 0.074 252.2); /* #6b8fb8 */
+  --accent-indigo:          oklch(0.644 0.064 265.8); /* #7b8db5 */
+  --accent-green:           oklch(0.695 0.072 139.2); /* #86a87d */
+  --accent-amber:           oklch(0.821 0.142 79.6);  /* #f5b94a */
+  --accent-rose:            oklch(0.661 0.100 31.7);  /* #c87b6c */
+  --accent-violet:          oklch(0.674 0.083 296.4); /* #9b8cc4 */
 
-  /* DARK — status ------------------------------------------ */
-  --status-success: #86a87d;
-  --status-warning: #d4a82a;
-  --status-error: #e74c3c;
-  --status-info: #6b8fb8;
+  --status-success:         oklch(0.695 0.072 139.2); /* #86a87d */
+  --status-warning:         oklch(0.752 0.142 87.9);  /* #d4a82a */
+  --status-error:           oklch(0.631 0.194 29.4);  /* #e74c3c */
+  --status-info:            oklch(0.639 0.074 252.2); /* #6b8fb8 */
 
-  /* DARK — misc -------------------------------------------- */
-  --badge-help: #f5b94a;
+  --badge-help:             oklch(0.821 0.142 79.6);  /* #f5b94a */
 }
 
-/* Tailwind 4 theme bridge — exposes vars as utility classes
-   (e.g. bg-primary, text-accent-rose, rounded-xl, font-heading) */
+/* Tailwind 4 theme bridge — exposes vars as utility classes */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -212,7 +210,6 @@
   h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
 }
 
-/* Text style utilities — mirror Figma text/* styles 1:1 */
 @layer utilities {
   .text-display          { font: 700 48px/56px var(--font-heading); letter-spacing: -1px; }
   .text-h1               { font: 700 36px/44px var(--font-heading); letter-spacing: -0.5px; }

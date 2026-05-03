@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 
 /**
  * Theme Toggle — mirrors Figma component "Theme Toggle" (4048:17, 2 variants).
- * 256×80 container, two pill buttons. Active variant uses the brand red ring.
  */
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme, resolvedTheme } = useTheme();
@@ -15,13 +14,13 @@ export function ThemeToggle({ className }: { className?: string }) {
 
   React.useEffect(() => setMounted(true), []);
 
-  // Avoid hydration mismatch — render a neutral placeholder until mounted.
   const current = mounted ? (theme === "system" ? resolvedTheme : theme) : "dark";
 
   return (
     <div
       role="radiogroup"
       aria-label="Theme"
+      data-slot="theme-toggle"
       className={cn(
         "inline-flex items-center gap-1 rounded-full border border-border bg-card p-1",
         className
@@ -31,6 +30,8 @@ export function ThemeToggle({ className }: { className?: string }) {
         type="button"
         role="radio"
         aria-checked={current === "light"}
+        data-slot="theme-toggle-option"
+        data-state={current === "light" ? "active" : "inactive"}
         onClick={() => setTheme("light")}
         className={cn(
           "inline-flex h-8 items-center gap-1.5 rounded-full px-3 text-small-medium transition-colors",
@@ -46,6 +47,8 @@ export function ThemeToggle({ className }: { className?: string }) {
         type="button"
         role="radio"
         aria-checked={current === "dark"}
+        data-slot="theme-toggle-option"
+        data-state={current === "dark" ? "active" : "inactive"}
         onClick={() => setTheme("dark")}
         className={cn(
           "inline-flex h-8 items-center gap-1.5 rounded-full px-3 text-small-medium transition-colors",
