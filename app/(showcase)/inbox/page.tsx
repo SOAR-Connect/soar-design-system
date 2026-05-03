@@ -6,6 +6,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { accentVar, type AccentColor } from "../_data/shared";
 import { cn } from "@/lib/utils";
 
@@ -57,7 +59,12 @@ export default function InboxPage() {
       <section className="flex h-full flex-col border-r border-border bg-card">
         <header className="flex items-center justify-between px-5 py-4">
           <h1 className="text-h2 text-foreground" style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}>Inbox</h1>
-          <Button variant="outline" size="icon" aria-label="Flag"><Flag /></Button>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button variant="outline" size="icon" aria-label="Show flagged"><Flag /></Button>
+            </TooltipTrigger>
+            <TooltipContent>Show flagged</TooltipContent>
+          </Tooltip>
         </header>
         <div className="flex border-b border-border px-5">
           <TabButton active={tab === "sent"} onClick={() => setTab("sent")} count={12}>Sent Asks</TabButton>
@@ -69,98 +76,107 @@ export default function InboxPage() {
             <input className="flex-1 bg-transparent outline-none placeholder:text-muted-foreground" placeholder="Search asks…" />
           </div>
         </div>
-        <ul className="flex-1 overflow-y-auto">
-          {sentAsks.map((a) => {
-            const isActive = a.id === activeId;
-            return (
-              <li key={a.id} onClick={() => setActiveId(a.id)} className={cn("cursor-pointer border-b border-border/50 px-5 py-4 transition-colors", isActive && "bg-[color-mix(in_oklab,var(--accent-amber)_18%,transparent)]")}>
-                <div className="mb-2 flex items-center gap-2">
-                  <Badge variant={statusVariant[a.status]} className="rounded-full capitalize">{a.status}</Badge>
-                  {a.unread && <span className="size-2 rounded-full bg-primary" aria-hidden />}
-                </div>
-                <p className="mb-2 line-clamp-2 text-body-sm-medium text-card-foreground">{a.title}</p>
-                <div className="flex items-center gap-2">
-                  <div className="flex -space-x-1.5">
-                    {a.responders.map((r) => (
-                      <Avatar key={r.initials} size="sm" className="border-2 border-card" style={{ background: accentVar(r.accent) }}>
-                        <AvatarFallback className="bg-transparent text-[9px] text-white">{r.initials}</AvatarFallback>
-                      </Avatar>
-                    ))}
-                    {a.extra && (
-                      <span className="flex size-6 items-center justify-center rounded-full border-2 border-card bg-secondary text-caption text-muted-foreground">+{a.extra}</span>
-                    )}
+        <ScrollArea className="flex-1">
+          <ul>
+            {sentAsks.map((a) => {
+              const isActive = a.id === activeId;
+              return (
+                <li key={a.id} onClick={() => setActiveId(a.id)} className={cn("cursor-pointer border-b border-border/50 px-5 py-4 transition-colors", isActive && "bg-[color-mix(in_oklab,var(--accent-amber)_18%,transparent)]")}>
+                  <div className="mb-2 flex items-center gap-2">
+                    <Badge variant={statusVariant[a.status]} className="rounded-full capitalize">{a.status}</Badge>
+                    {a.unread && <span className="size-2 rounded-full bg-primary" aria-hidden />}
                   </div>
-                  <span className="ml-auto text-caption text-muted-foreground">{a.responses} responses · {a.age}</span>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+                  <p className="mb-2 line-clamp-2 text-body-sm-medium text-card-foreground">{a.title}</p>
+                  <div className="flex items-center gap-2">
+                    <div className="flex -space-x-1.5">
+                      {a.responders.map((r) => (
+                        <Avatar key={r.initials} size="sm" className="border-2 border-card" style={{ background: accentVar(r.accent) }}>
+                          <AvatarFallback className="bg-transparent text-[9px] text-white">{r.initials}</AvatarFallback>
+                        </Avatar>
+                      ))}
+                      {a.extra && (
+                        <span className="flex size-6 items-center justify-center rounded-full border-2 border-card bg-secondary text-caption text-muted-foreground">+{a.extra}</span>
+                      )}
+                    </div>
+                    <span className="ml-auto text-caption text-muted-foreground">{a.responses} responses · {a.age}</span>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </ScrollArea>
       </section>
       <section className="flex h-full flex-col overflow-hidden">
-        <div className="flex flex-1 flex-col overflow-y-auto px-8 py-6">
-          <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
-            <div className="flex items-center gap-3">
-              <Badge variant={statusVariant[active.status]} className="rounded-full capitalize">{active.status}</Badge>
-              <div className="ml-auto flex gap-2">
-                <Button variant="outline" size="sm">Edit</Button>
-                <Button size="sm">Mark complete</Button>
-              </div>
-            </div>
-            <header>
-              <h2 className="text-h2 text-foreground" style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}>{active.title}</h2>
-              <p className="mt-2 text-caption text-muted-foreground">Sent <strong className="font-medium text-foreground">{active.age}</strong> · To 8 connections · {active.responses} responses</p>
-            </header>
-            <Card className="rounded-2xl bg-muted/40 p-5">
-              <p className="mb-2 text-overline text-muted-foreground">Your ask</p>
-              <p className="text-body text-card-foreground">{active.title} to help us scope our next platform iteration. Should have B2B SaaS background and have shipped to enterprise customers.</p>
-            </Card>
-            <div>
-              <div className="mb-4 flex items-center gap-2">
-                <h3 className="text-h3 text-foreground" style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}>Responses</h3>
-                <div className="ml-auto flex gap-1">
-                  {(["All", "Positive", "Not answered", "Negative"] as const).map((f) => {
-                    const count = f === "All" ? 5 : f === "Positive" ? 3 : f === "Not answered" ? 2 : 0;
-                    return (
-                      <button key={f} onClick={() => setResponseFilter(f)} className={cn("rounded-full px-3 py-1 text-small-medium transition-colors", responseFilter === f ? "bg-secondary text-secondary-foreground" : "text-muted-foreground hover:text-foreground")}>
-                        {f} <span className="opacity-70">{count}</span>
-                      </button>
-                    );
-                  })}
+        <ScrollArea className="flex-1">
+          <div className="px-8 py-6">
+            <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
+              <div className="flex items-center gap-3">
+                <Badge variant={statusVariant[active.status]} className="rounded-full capitalize">{active.status}</Badge>
+                <div className="ml-auto flex gap-2">
+                  <Button variant="outline" size="sm">Edit</Button>
+                  <Button size="sm">Mark complete</Button>
                 </div>
               </div>
-              <div className="flex flex-col gap-3">
-                {detailResponses.map((r, i) => (
-                  <Card key={i} className="rounded-2xl p-5">
-                    <div className="mb-3 flex items-center gap-3">
-                      <Avatar size="md" style={{ background: accentVar(r.accent) }}>
-                        <AvatarFallback className="bg-transparent text-white">{r.initials}</AvatarFallback>
-                      </Avatar>
-                      <div className="flex min-w-0 flex-1 flex-col">
-                        <div className="flex items-center gap-2">
-                          <span className="text-body-sm-medium text-card-foreground">{r.actor}</span>
-                          <Badge variant={sentimentVariant[r.sentiment]} className="rounded-full capitalize">{r.sentiment}</Badge>
+              <header>
+                <h2 className="text-h2 text-foreground" style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}>{active.title}</h2>
+                <p className="mt-2 text-caption text-muted-foreground">Sent <strong className="font-medium text-foreground">{active.age}</strong> · To 8 connections · {active.responses} responses</p>
+              </header>
+              <Card className="rounded-2xl bg-muted/40 p-5">
+                <p className="mb-2 text-overline text-muted-foreground">Your ask</p>
+                <p className="text-body text-card-foreground">{active.title} to help us scope our next platform iteration. Should have B2B SaaS background and have shipped to enterprise customers.</p>
+              </Card>
+              <div>
+                <div className="mb-4 flex items-center gap-2">
+                  <h3 className="text-h3 text-foreground" style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}>Responses</h3>
+                  <div className="ml-auto flex gap-1">
+                    {(["All", "Positive", "Not answered", "Negative"] as const).map((f) => {
+                      const count = f === "All" ? 5 : f === "Positive" ? 3 : f === "Not answered" ? 2 : 0;
+                      return (
+                        <button key={f} onClick={() => setResponseFilter(f)} className={cn("rounded-full px-3 py-1 text-small-medium transition-colors", responseFilter === f ? "bg-secondary text-secondary-foreground" : "text-muted-foreground hover:text-foreground")}>
+                          {f} <span className="opacity-70">{count}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+                <div className="flex flex-col gap-3">
+                  {detailResponses.map((r, i) => (
+                    <Card key={i} className="rounded-2xl p-5">
+                      <div className="mb-3 flex items-center gap-3">
+                        <Avatar size="md" style={{ background: accentVar(r.accent) }}>
+                          <AvatarFallback className="bg-transparent text-white">{r.initials}</AvatarFallback>
+                        </Avatar>
+                        <div className="flex min-w-0 flex-1 flex-col">
+                          <div className="flex items-center gap-2">
+                            <span className="text-body-sm-medium text-card-foreground">{r.actor}</span>
+                            <Badge variant={sentimentVariant[r.sentiment]} className="rounded-full capitalize">{r.sentiment}</Badge>
+                          </div>
+                          <span className="text-caption text-muted-foreground">{r.role}</span>
                         </div>
-                        <span className="text-caption text-muted-foreground">{r.role}</span>
+                        <span className="text-caption text-muted-foreground">{r.time}</span>
                       </div>
-                      <span className="text-caption text-muted-foreground">{r.time}</span>
-                    </div>
-                    <p className="mb-4 text-body-sm text-foreground">{r.body}</p>
-                    <div className="flex gap-2">
-                      <Button size="sm">Yes — make intro</Button>
-                      <Button variant="outline" size="sm">Tell me more</Button>
-                      <Button variant="ghost" size="sm">Decline</Button>
-                    </div>
-                  </Card>
-                ))}
+                      <p className="mb-4 text-body-sm text-foreground">{r.body}</p>
+                      <div className="flex gap-2">
+                        <Button size="sm">Yes — make intro</Button>
+                        <Button variant="outline" size="sm">Tell me more</Button>
+                        <Button variant="ghost" size="sm">Decline</Button>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </ScrollArea>
         <footer className="border-t border-border bg-card px-8 py-4">
           <div className="mx-auto flex max-w-3xl items-center gap-3">
             <input className="flex-1 rounded-md border border-border bg-background px-3 py-2 text-body-sm text-foreground outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-primary/20" placeholder="Reply to all respondents…" />
-            <Button size="icon" aria-label="Send"><Send /></Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button size="icon" aria-label="Send reply"><Send /></Button>
+              </TooltipTrigger>
+              <TooltipContent>Send reply</TooltipContent>
+            </Tooltip>
           </div>
         </footer>
       </section>

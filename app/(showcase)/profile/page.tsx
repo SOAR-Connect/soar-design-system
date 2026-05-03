@@ -2,11 +2,16 @@
 
 import * as React from "react";
 import { User, Mail, Bell, Lock, Calendar, Hash, MessageSquare, BookUser, Phone, Users, CreditCard, Circle, Check } from "lucide-react";
+import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import {
+  AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent,
+  AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { user } from "../_data/shared";
 import { cn } from "@/lib/utils";
@@ -32,6 +37,8 @@ const settingsNav = [
 ] as const;
 
 export default function ProfilePage() {
+  const save = () => toast.success("Profile saved", { description: "Your changes are live." });
+
   return (
     <div className="grid h-full flex-1 grid-cols-[256px_1fr] overflow-hidden">
       <aside className="flex h-screen flex-col gap-1 overflow-y-auto border-r border-border bg-background p-3">
@@ -65,7 +72,7 @@ export default function ProfilePage() {
             <div className="flex shrink-0 items-center gap-2">
               <ThemeToggle />
               <Button variant="ghost">Discard</Button>
-              <Button>Save changes</Button>
+              <Button onClick={save}>Save changes</Button>
             </div>
           </header>
           <Card className="flex items-center gap-4 rounded-2xl p-5">
@@ -143,7 +150,29 @@ export default function ProfilePage() {
                 <p className="text-body-sm-medium text-card-foreground">Delete account</p>
                 <p className="text-caption text-muted-foreground">Permanently remove your account, asks, connections, and history.</p>
               </div>
-              <Button variant="destructive" className="ml-auto">Delete account</Button>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="destructive" className="ml-auto">Delete account</Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Delete your account?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This permanently removes your account, all asks, connections, conversations, and history.
+                      We cannot recover this data afterwards.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction
+                      className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                      onClick={() => toast.error("Account deletion is disabled in the showcase")}
+                    >
+                      Yes, delete my account
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </div>
           </Card>
         </div>

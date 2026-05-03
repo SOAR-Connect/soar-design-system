@@ -1,5 +1,6 @@
 import { Flag, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { greeting } from "../_data/mock";
 
@@ -14,7 +15,12 @@ export function DashboardHeader() {
       </div>
       <div className="flex shrink-0 items-center gap-2">
         <ThemeToggle />
-        <Button variant="outline" size="icon" aria-label="Flagged items"><Flag /></Button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline" size="icon" aria-label="Flagged items"><Flag /></Button>
+          </TooltipTrigger>
+          <TooltipContent>Flagged items</TooltipContent>
+        </Tooltip>
         <Button><Plus /> New Ask</Button>
       </div>
     </header>

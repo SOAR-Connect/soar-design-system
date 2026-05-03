@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { accentVar, type AccentColor } from "../_data/shared";
 import { cn } from "@/lib/utils";
@@ -53,7 +54,6 @@ export default function ConnectionsPage() {
         </header>
 
         <Card className="overflow-hidden rounded-2xl">
-          {/* Toolbar */}
           <div className="flex flex-wrap items-center gap-3 border-b border-border px-6 py-4">
             <div className="flex h-9 w-72 items-center gap-2 rounded-md border border-border bg-background px-3 text-body-sm">
               <Search className="size-4 text-muted-foreground" />
@@ -81,12 +81,15 @@ export default function ConnectionsPage() {
             </div>
             <div className="ml-auto flex items-center gap-3">
               <div className="flex items-center gap-2 text-small text-muted-foreground">
-                Sort by
-                <select className="rounded-md border border-border bg-background px-2 py-1 text-small text-foreground">
-                  <option>Last contact</option>
-                  <option>SOAR score</option>
-                  <option>Mutual</option>
-                </select>
+                <span>Sort by</span>
+                <Select defaultValue="last-contact">
+                  <SelectTrigger className="h-8 w-[160px]"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="last-contact">Last contact</SelectItem>
+                    <SelectItem value="soar-score">SOAR score</SelectItem>
+                    <SelectItem value="mutual">Mutual</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div className="flex items-center gap-1 rounded-md border border-border p-0.5">
                 <button onClick={() => setView("list")} aria-label="List" className={cn("flex size-7 items-center justify-center rounded text-muted-foreground", view === "list" && "bg-secondary text-foreground")}>
@@ -99,7 +102,6 @@ export default function ConnectionsPage() {
             </div>
           </div>
 
-          {/* Table */}
           <div className="overflow-x-auto">
             <table className="w-full text-body-sm">
               <thead className="bg-muted/40 text-overline text-muted-foreground">

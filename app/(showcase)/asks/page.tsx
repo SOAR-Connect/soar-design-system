@@ -1,10 +1,12 @@
 "use client";
 
-import { Plus, Send, X, LayoutGrid, List, Check } from "lucide-react";
+import { Send, X, LayoutGrid, List, Check } from "lucide-react";
+import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { accentVar, type AccentColor } from "../_data/shared";
 import { cn } from "@/lib/utils";
@@ -45,15 +47,20 @@ export default function AsksPage() {
       return next;
     });
 
+  const send = () => {
+    toast.success(`Asks sent to ${selected.size} connections`, {
+      description: "We'll notify you as responses come in.",
+    });
+    setSelected(new Set());
+  };
+
   return (
     <main className="mx-auto w-full max-w-[1100px] flex-1 px-8 py-8">
       <div className="flex flex-col gap-6">
-        {/* Page header tools */}
         <div className="flex items-center justify-end gap-2">
           <ThemeToggle />
         </div>
 
-        {/* Create your ask */}
         <section className="flex flex-col items-center gap-4 text-center">
           <h1 className="text-h1 text-foreground" style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}>
             Create your ask
@@ -87,7 +94,6 @@ export default function AsksPage() {
           </div>
         </Card>
 
-        {/* Selected banner */}
         {selected.size > 0 && (
           <div
             className="flex items-center gap-3 rounded-xl px-4 py-3 text-primary-foreground"
@@ -103,13 +109,12 @@ export default function AsksPage() {
             >
               Clear
             </button>
-            <Button variant="default">
+            <Button variant="default" onClick={send}>
               <Send /> Send asks
             </Button>
           </div>
         )}
 
-        {/* Filters + sort + view toggle */}
         <div className="flex items-center gap-3">
           <div className="flex gap-1">
             {filterPills.map((p) => (
@@ -129,12 +134,15 @@ export default function AsksPage() {
           </div>
           <div className="ml-auto flex items-center gap-3">
             <div className="flex items-center gap-2 text-small text-muted-foreground">
-              Sort by
-              <select className="rounded-md border border-border bg-background px-2 py-1 text-small text-foreground">
-                <option>SOAR score</option>
-                <option>Last contact</option>
-                <option>Mutual connections</option>
-              </select>
+              <span>Sort by</span>
+              <Select defaultValue="soar-score">
+                <SelectTrigger className="h-8 w-[180px]"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="soar-score">SOAR score</SelectItem>
+                  <SelectItem value="last-contact">Last contact</SelectItem>
+                  <SelectItem value="mutual">Mutual connections</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             <div className="flex items-center gap-1 rounded-md border border-border p-0.5">
               <button
