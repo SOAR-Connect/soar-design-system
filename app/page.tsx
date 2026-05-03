@@ -4,12 +4,12 @@ import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const showcaseRoutes = [
-  {
-    href: "/dashboard-v2",
-    title: "Dashboard v2",
-    description: "Phase 2 flagship — first end-to-end screen using the v2 token + component system.",
-    status: "in progress",
-  },
+  { href: "/dashboard-v2",  title: "Dashboard v2",   description: "KPI cards, recent asks, activity feed, top connections, Q2 goals.",  status: "live" },
+  { href: "/asks",          title: "Asks",           description: "Create-ask form, AI-suggested recommendations, multi-select to send.", status: "live" },
+  { href: "/connections",   title: "Connections",    description: "Searchable directory of 320 connections with sort and filters.",     status: "live" },
+  { href: "/inbox",         title: "Inbox",          description: "Three-pane mail layout for managing sent and received asks.",        status: "live" },
+  { href: "/notifications", title: "Notifications",  description: "Grouped activity feed with category filters and unread tracking.",   status: "live" },
+  { href: "/profile",       title: "Profile · Settings", description: "Personal info, integrations, workspace, and danger-zone actions.",   status: "live" },
 ];
 
 export default function HomePage() {
@@ -34,9 +34,13 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {showcaseRoutes.map((r) => (
-            <Link key={r.href} href={r.href} className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-xl">
+            <Link
+              key={r.href}
+              href={r.href}
+              className="block rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
               <Card className="h-full transition-colors hover:border-primary/40">
                 <CardHeader>
                   <div className="flex items-center justify-between">
