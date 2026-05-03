@@ -5,10 +5,6 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-/**
- * Sidebar Item — mirrors Figma "Sidebar Item" component set (Default/Active/Hover).
- * Used inside the Dashboard v2 left rail.
- */
 const sidebarItemVariants = cva(
   "group flex h-9 w-full items-center gap-3 rounded-lg px-3 text-body-medium transition-colors [&_svg]:size-4 [&_svg]:shrink-0",
   {
@@ -34,6 +30,7 @@ export const SidebarItem = React.forwardRef<HTMLButtonElement, SidebarItemProps>
     return (
       <Comp
         ref={ref}
+        data-slot="sidebar-item"
         className={cn(sidebarItemVariants({ state }), className)}
         {...props}
       />

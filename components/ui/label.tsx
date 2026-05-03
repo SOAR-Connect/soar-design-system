@@ -10,6 +10,7 @@ export const Label = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <LabelPrimitive.Root
     ref={ref}
+    data-slot="label"
     className={cn(
       "text-body-sm-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
       className
