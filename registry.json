@@ -1,0 +1,70 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "soar",
+  "homepage": "https://github.com/SOAR-Connect/soar-design-system",
+  "items": [
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "dependencies": ["@radix-ui/react-avatar"],
+      "files": [{ "path": "components/ui/avatar.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "dependencies": ["class-variance-authority"],
+      "files": [{ "path": "components/ui/badge.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
+      "files": [{ "path": "components/ui/button.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [{ "path": "components/ui/card.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "dependencies": ["@radix-ui/react-checkbox"],
+      "files": [{ "path": "components/ui/checkbox.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [{ "path": "components/ui/input.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "dependencies": ["@radix-ui/react-label", "class-variance-authority"],
+      "files": [{ "path": "components/ui/label.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "dependencies": ["@radix-ui/react-switch"],
+      "files": [{ "path": "components/ui/switch.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "dependencies": ["@radix-ui/react-tabs"],
+      "files": [{ "path": "components/ui/tabs.tsx", "type": "registry:ui" }]
+    }
+  ]
+}
