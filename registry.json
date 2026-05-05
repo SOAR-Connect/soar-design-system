@@ -39,6 +39,20 @@
       "files": [{ "path": "components/ui/checkbox.tsx", "type": "registry:ui" }]
     },
     {
+      "name": "dialog",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "dependencies": ["@radix-ui/react-dialog"],
+      "files": [{ "path": "components/ui/dialog.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "dependencies": ["@radix-ui/react-dropdown-menu"],
+      "files": [{ "path": "components/ui/dropdown-menu.tsx", "type": "registry:ui" }]
+    },
+    {
       "name": "input",
       "type": "registry:ui",
       "registryDependencies": [],
@@ -53,6 +67,41 @@
       "files": [{ "path": "components/ui/label.tsx", "type": "registry:ui" }]
     },
     {
+      "name": "popover",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "dependencies": ["@radix-ui/react-popover"],
+      "files": [{ "path": "components/ui/popover.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "dependencies": ["@radix-ui/react-select"],
+      "files": [{ "path": "components/ui/select.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "dependencies": ["@radix-ui/react-separator"],
+      "files": [{ "path": "components/ui/separator.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "dependencies": ["@radix-ui/react-dialog", "class-variance-authority"],
+      "files": [{ "path": "components/ui/sheet.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "dependencies": ["sonner"],
+      "files": [{ "path": "components/ui/sonner.tsx", "type": "registry:ui" }]
+    },
+    {
       "name": "switch",
       "type": "registry:ui",
       "registryDependencies": [],
@@ -65,6 +114,76 @@
       "registryDependencies": [],
       "dependencies": ["@radix-ui/react-tabs"],
       "files": [{ "path": "components/ui/tabs.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "dependencies": ["@radix-ui/react-tooltip"],
+      "files": [{ "path": "components/ui/tooltip.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "ask-row",
+      "type": "registry:component",
+      "registryDependencies": ["avatar", "badge", "button"],
+      "dependencies": [],
+      "files": [{ "path": "components/patterns/ask-row.tsx", "type": "registry:component" }]
+    },
+    {
+      "name": "connection-row",
+      "type": "registry:component",
+      "registryDependencies": ["avatar", "badge", "button", "soar-score-ring"],
+      "dependencies": [],
+      "files": [{ "path": "components/patterns/connection-row.tsx", "type": "registry:component" }]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:component",
+      "registryDependencies": ["button"],
+      "dependencies": [],
+      "files": [{ "path": "components/patterns/empty-state.tsx", "type": "registry:component" }]
+    },
+    {
+      "name": "group-cover-card",
+      "type": "registry:component",
+      "registryDependencies": ["avatar", "button"],
+      "dependencies": [],
+      "files": [{ "path": "components/patterns/group-cover-card.tsx", "type": "registry:component" }]
+    },
+    {
+      "name": "inbox-message-row",
+      "type": "registry:component",
+      "registryDependencies": ["avatar"],
+      "dependencies": [],
+      "files": [{ "path": "components/patterns/inbox-message-row.tsx", "type": "registry:component" }]
+    },
+    {
+      "name": "notification-item",
+      "type": "registry:component",
+      "registryDependencies": ["avatar"],
+      "dependencies": [],
+      "files": [{ "path": "components/patterns/notification-item.tsx", "type": "registry:component" }]
+    },
+    {
+      "name": "skeleton-row",
+      "type": "registry:component",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [{ "path": "components/patterns/skeleton-row.tsx", "type": "registry:component" }]
+    },
+    {
+      "name": "soar-score-ring",
+      "type": "registry:component",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [{ "path": "components/patterns/soar-score-ring.tsx", "type": "registry:component" }]
+    },
+    {
+      "name": "stats-card",
+      "type": "registry:component",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [{ "path": "components/patterns/stats-card.tsx", "type": "registry:component" }]
     }
   ]
 }

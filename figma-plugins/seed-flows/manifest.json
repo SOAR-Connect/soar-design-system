@@ -1,0 +1,9 @@
+{
+  "name": "SOAR — Seed Canonical Flows (FigJam)",
+  "id": "soar-seed-flows",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figjam"],
+  "documentAccess": "dynamic-page",
+  "networkAccess": { "allowedDomains": ["none"] }
+}

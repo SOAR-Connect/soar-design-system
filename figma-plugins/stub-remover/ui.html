@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>SOAR — Stub Remover</title>
+  <style>
+    :root {
+      --bg: #fdfaf5;
+      --fg: #1a0a00;
+      --muted: #6b4f2a;
+      --border: #e8d5b0;
+      --primary: #8b1f1a;
+      --primary-fg: #fdfaf5;
+      --destructive: #c0392b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a0808;
+        --fg: #fdfaf5;
+        --muted: #a89070;
+        --border: #3a2018;
+        --primary: #cc4a3a;
+        --primary-fg: #1a0808;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    header h1 {
+      margin: 0;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    header .count {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 0;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      padding: 8px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+    }
+    li label { flex: 1; cursor: pointer; }
+    li input[type=checkbox] { margin-top: 2px; }
+    .meta {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 2px;
+    }
+    .empty {
+      padding: 24px 16px;
+      color: var(--muted);
+      text-align: center;
+    }
+    footer {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+    button {
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--fg);
+      cursor: pointer;
+    }
+    button.primary {
+      background: var(--destructive);
+      color: var(--primary-fg);
+      border-color: var(--destructive);
+    }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SOAR — Stub Remover</h1>
+    <span class="count" id="count">scanning…</span>
+  </header>
+  <main>
+    <ul id="list"></ul>
+    <div class="empty" id="empty" hidden>No stubs detected on any non-library page.</div>
+  </main>
+  <footer>
+    <button id="rescan">Rescan</button>
+    <button id="select-all">All</button>
+    <button id="select-none">None</button>
+    <button id="apply" class="primary" disabled>Remove selected</button>
+  </footer>
+
+  <script>
+    const $list = document.getElementById('list');
+    const $count = document.getElementById('count');
+    const $empty = document.getElementById('empty');
+    const $apply = document.getElementById('apply');
+
+    let report = [];
+
+    function render() {
+      $list.innerHTML = '';
+      if (report.length === 0) {
+        $empty.hidden = false;
+        $count.textContent = '0 found';
+        $apply.disabled = true;
+        return;
+      }
+      $empty.hidden = true;
+      $count.textContent = `${report.length} found · select to remove`;
+
+      for (const r of report) {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <input type="checkbox" data-id="${r.nodeId}" />
+          <label>
+            <strong>${escapeHtml(r.nodeName)}</strong> <span style="color:var(--muted)">· ${r.nodeType}</span>
+            <div class="meta">${escapeHtml(r.pageName)} → ${escapeHtml(r.reason)}</div>
+          </label>
+        `;
+        $list.appendChild(li);
+      }
+      updateApplyState();
+      $list.querySelectorAll('input[type=checkbox]').forEach((cb) =>
+        cb.addEventListener('change', updateApplyState),
+      );
+    }
+
+    function updateApplyState() {
+      const any = !![...$list.querySelectorAll('input[type=checkbox]:checked')].length;
+      $apply.disabled = !any;
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, (c) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+      }[c]));
+    }
+
+    document.getElementById('select-all').addEventListener('click', () => {
+      $list.querySelectorAll('input[type=checkbox]').forEach((cb) => (cb.checked = true));
+      updateApplyState();
+    });
+    document.getElementById('select-none').addEventListener('click', () => {
+      $list.querySelectorAll('input[type=checkbox]').forEach((cb) => (cb.checked = false));
+      updateApplyState();
+    });
+    document.getElementById('rescan').addEventListener('click', () => {
+      $count.textContent = 'scanning…';
+      parent.postMessage({ pluginMessage: { kind: 'rescan' } }, '*');
+    });
+    document.getElementById('apply').addEventListener('click', () => {
+      const ids = [...$list.querySelectorAll('input[type=checkbox]:checked')].map((cb) => cb.dataset.id);
+      if (!ids.length) return;
+      if (!confirm(`Remove ${ids.length} stub frame(s)? This is undoable in Figma's history.`)) return;
+      parent.postMessage({ pluginMessage: { kind: 'apply', ids } }, '*');
+    });
+
+    window.onmessage = (event) => {
+      const msg = event.data.pluginMessage;
+      if (!msg) return;
+      if (msg.kind === 'scan-result') {
+        report = msg.report || [];
+        render();
+      }
+    };
+  </script>
+</body>
+</html>
