@@ -5,13 +5,22 @@
 
 /* ============================================================
  * SOAR Connect — Foundation v2 tokens (single source of truth)
- * Synced from Figma "🚀 Foundation" page (file 0u7EjU8sbCqCBmgPN7ufBO).
+ * Synced from Figma "🎨 Design System" page (file 0u7EjU8sbCqCBmgPN7ufBO).
  *
  * Colors are expressed in OKLCH (shadcn v3 convention) for better
  * color manipulation. Original Figma hex values are preserved as
  * inline comments so designers can verify against the source.
  *
  * Tokens Studio mirror: /tokens/soar.tokens.json
+ *
+ * 2026-05-11 coherence pass:
+ *   - Font families reconciled with Figma (EB Garamond + Albert Sans).
+ *   - Variable scopes tightened in Figma (color → fill/stroke/text only,
+ *     radius → corner radius only, space → gap/dimension only).
+ *   - "Inter" variable removed (was unused; every style used Albert Sans).
+ *   - "Albert Sans masquerading as mono" bug fixed in Figma text styles.
+ *   - Added text-display, text-h*, text-body-*, text-small-*, text-caption-*,
+ *     text-overline, text-mono, text-mono-sm utility classes.
  * ============================================================ */
 
 :root {
@@ -40,8 +49,9 @@
   --space-18: 72px;
 
   /* Type families ------------------------------------------- */
-  --font-heading: "Fraunces", ui-serif, Georgia, serif;
-  --font-body: "Geist", ui-sans-serif, system-ui, sans-serif;
+  /* Reconciled to match Figma source of truth (2026-05-11). */
+  --font-heading: "EB Garamond", ui-serif, Georgia, serif;
+  --font-body: "Albert Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   /* LIGHT — semantic colors (hex shown for designer reference) */
@@ -51,19 +61,19 @@
   --card-foreground:        oklch(0.213 0.045 40.4);  /* #2a1108 */
   --popover:                oklch(0.983 0.011 84.6);  /* #fdf9f1 */
   --popover-foreground:     oklch(0.213 0.045 40.4);  /* #2a1108 */
-  --primary:                oklch(0.420 0.144 28.0);  /* #8b1f1a */
+  --primary:                oklch(0.420 0.144 28.0);  /* #8b1f1a — Soar rose, primary action */
   --primary-foreground:     oklch(0.975 0.013 82.4);  /* #fbf6ed */
   --secondary:              oklch(0.887 0.046 80.0);  /* #ead7b8 */
   --secondary-foreground:   oklch(0.213 0.045 40.4);  /* #2a1108 */
   --muted:                  oklch(0.928 0.026 82.4);  /* #f0e6d4 */
   --muted-foreground:       oklch(0.490 0.058 56.1);  /* #7a5840 */
-  --accent:                 oklch(0.748 0.154 72.4);  /* #e89b1a */
+  --accent:                 oklch(0.748 0.154 72.4);  /* #e89b1a — Soar amber, highlight/CTA-accent */
   --accent-foreground:      oklch(0.213 0.045 40.4);  /* #2a1108 */
   --destructive:            oklch(0.563 0.170 36.5);  /* #c4451f */
   --destructive-foreground: oklch(0.975 0.013 82.4);  /* #fbf6ed */
   --border:                 oklch(0.873 0.040 80.9);  /* #e3d3b8 */
   --input:                  oklch(0.873 0.040 80.9);  /* #e3d3b8 */
-  --ring:                   oklch(0.420 0.144 28.0);  /* #8b1f1a */
+  --ring:                   oklch(0.420 0.144 28.0);  /* #8b1f1a — follows primary */
 
   /* LIGHT — sidebar surface --------------------------------- */
   --sidebar:                oklch(0.953 0.014 84.6);  /* #f4efe5 */
@@ -75,8 +85,8 @@
   --accent-blue:            oklch(0.273 0.063 252.6); /* #0d2845 */
   --accent-indigo:          oklch(0.427 0.066 260.8); /* #3a4f73 */
   --accent-green:           oklch(0.551 0.076 139.8); /* #5a7d52 */
-  --accent-amber:           oklch(0.748 0.154 72.4);  /* #e89b1a */
-  --accent-rose:            oklch(0.526 0.129 30.9);  /* #a8493a */
+  --accent-amber:           oklch(0.748 0.154 72.4);  /* #e89b1a — same hue as --accent */
+  --accent-rose:            oklch(0.526 0.129 30.9);  /* #a8493a — sibling to --primary */
   --accent-violet:          oklch(0.507 0.078 298.6); /* #6b5b8c */
 
   /* LIGHT — status ----------------------------------------- */
@@ -90,6 +100,8 @@
 
   /* Shadow (Figma "site" effect) --------------------------- */
   --shadow-site: 0 0 34px 10px rgb(0 0 0 / 0.10);
+  --shadow-elevation-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+  --shadow-elevation-md: 0 4px 12px -2px rgb(0 0 0 / 0.06);
 }
 
 .dark {
@@ -211,21 +223,22 @@
 }
 
 @layer utilities {
-  .text-display          { font: 700 48px/56px var(--font-heading); letter-spacing: -1px; }
-  .text-h1               { font: 700 36px/44px var(--font-heading); letter-spacing: -0.5px; }
-  .text-h2               { font: 700 24px/32px var(--font-heading); letter-spacing: -0.25px; }
-  .text-h3               { font: 700 18px/24px var(--font-heading); }
-  .text-h4               { font: 700 16px/24px var(--font-heading); }
+  /* Canonical text ramp — mirrors Figma text/* styles exactly */
+  .text-display          { font: 600 48px/56px var(--font-heading); letter-spacing: -1px; }
+  .text-h1               { font: 600 36px/44px var(--font-heading); letter-spacing: -0.5px; }
+  .text-h2               { font: 600 24px/32px var(--font-heading); letter-spacing: -0.25px; }
+  .text-h3               { font: 600 18px/24px var(--font-heading); }
+  .text-h4               { font: 600 16px/24px var(--font-heading); }
   .text-body-lg          { font: 400 16px/24px var(--font-body); }
   .text-body-lg-medium   { font: 500 16px/24px var(--font-body); }
   .text-body             { font: 400 14px/20px var(--font-body); }
   .text-body-medium      { font: 500 14px/20px var(--font-body); }
-  .text-body-semibold    { font: 700 14px/20px var(--font-body); }
+  .text-body-semibold    { font: 600 14px/20px var(--font-body); }
   .text-body-sm          { font: 400 13px/18px var(--font-body); }
   .text-body-sm-medium   { font: 500 13px/18px var(--font-body); }
   .text-small            { font: 400 12px/16px var(--font-body); }
   .text-small-medium     { font: 500 12px/16px var(--font-body); }
-  .text-small-semibold   { font: 700 12px/16px var(--font-body); }
+  .text-small-semibold   { font: 600 12px/16px var(--font-body); }
   .text-caption          { font: 400 11px/14px var(--font-body); }
   .text-caption-medium   { font: 500 11px/14px var(--font-body); }
   .text-overline         { font: 500 10px/14px var(--font-body); letter-spacing: 0.6px; text-transform: uppercase; }
