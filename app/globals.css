@@ -5,22 +5,25 @@
 
 /* ============================================================
  * SOAR Connect — Foundation v2 tokens (single source of truth)
- * Synced from Figma "🎨 Design System" page (file 0u7EjU8sbCqCBmgPN7ufBO)
- * AND verified against the live landing page (soarconnect.netlify.app).
+ * Synced from Figma "🎨 Design System" page (file 0u7EjU8sbCqCBmgPN7ufBO).
  *
- * Source-of-truth precedence: PRODUCTION > FIGMA > REPO.
+ * Source-of-truth precedence:
+ *   • Color, spacing, radius:   PRODUCTION (soarconnect.netlify.app) wins
+ *   • Typography (families):    FIGMA wins — EB Garamond + Albert Sans
+ *   • Component anatomy:        FIGMA wins
+ *
+ * The live landing page currently uses Inter for body. That's treated
+ * as a production drift to fix downstream — Figma is the design source
+ * of truth for type. Owner: David.
  *
  * Tokens Studio mirror: /tokens/soar.tokens.json
  *
- * 2026-05-11 coherence pass (round 2):
- *   - Body font: Inter (matches live site, not Albert Sans from intermediate sync)
- *   - foreground: deep navy #0c1626 (was oxblood; navy is what production renders)
- *   - accent: now amber-soft surface #f7e8c8, accent-foreground deep amber-text #5a3800
- *     (the prior bright amber lives on as --amber for action surfaces)
- *   - secondary: parchment #ead7b8 (sibling to border for natural visual rhythm)
- *   - muted: surface tone #f4efe5; muted-foreground: warm brown #7a5840
- *   - New tokens from live: --primary-hover, --amber, --amber-soft, --amber-text, --gold
+ * 2026-05-11 coherence pass (round 2 final):
+ *   - Color reconciled to live production hex values
+ *   - Body font: Albert Sans (Figma canonical, not Inter)
+ *   - Heading font: EB Garamond (Figma canonical, not Fraunces)
  *   - Radius scale aligned to live: md=6, lg=10
+ *   - New tokens from live: --primary-hover, --amber, --amber-soft, --amber-text, --gold
  *   - Status palette uses production hues (gradient-card-derived)
  * ============================================================ */
 
@@ -50,9 +53,11 @@
   --space-18: 72px;
 
   /* Type families ------------------------------------------- */
-  /* Live production uses Inter for body; EB Garamond for serif headings. */
+  /* Figma is the canonical source of truth for type. Live site
+   * currently renders Inter — that's a production drift to fix
+   * downstream, not propagate here. */
   --font-heading: "EB Garamond", ui-serif, Georgia, serif;
-  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Albert Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   /* LIGHT — production palette ------------------------------ */
