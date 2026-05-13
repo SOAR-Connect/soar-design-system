@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOAR Connect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Albert+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --soar-burgundy:#6B1F1C;
+  --soar-burgundy-accent:#6B1F1C;
+  --soar-plum:#5A2E5C;
+  --soar-page-bg:#FAF5EE;
+  --soar-card-bg:#FFFFFF;
+  --soar-ann-card:#FBE9E6;
+  --soar-david-card:#FDF4E3;
+  --soar-privacy-strip-bg:#F5F1E9;
+  --soar-chip-neutral:#F1EFE8;
+  --soar-ann-header:#F4FAF0;
+  --soar-david-header:#EFF9F5;
+  --soar-tl-quote-bg:rgba(255,255,255,0.55);
+  --soar-tl-quote-border:rgba(0,0,0,0.08);
+  --soar-border:rgba(0,0,0,0.08);
+  --soar-border-soft:rgba(0,0,0,0.06);
+  --soar-shadow:rgba(0,0,0,0.04);
+  --soar-score-top:#6B1F1C;
+  --soar-score-mid-high:#A33A33;
+  --soar-score-light:#D4A8A4;
+  --soar-score-lightest:#F4C0B0;
+  --soar-ann-fill:#6B1F1C;
+  --soar-david-fill:#5A2E5C;
+  --soar-ann-name:#6B1F1C;
+  --soar-david-name:#5A2E5C;
+  --soar-sage:#3B6D11;
+  --soar-sage-light:#97C459;
+  --soar-sage-avatar:#3B6D11;
+  --soar-teal:#0F6E56;
+  --soar-teal-avatar:#0F6E56;
+  --soar-coral-bg:#FAECE7;
+  --soar-coral-text:#993C1D;
+  --soar-coral-avatar:#D85A30;
+  --soar-mint-bg:#E1F5EE;
+  --soar-mint-text:#0F6E56;
+  --soar-light-sage-bg:#EAF3DE;
+  --soar-light-sage-text:#3B6D11;
+  --soar-amber-bg:#FAEEDA;
+  --soar-amber-text:#854F0B;
+  --soar-indigo-bg:#EEEDFE;
+  --soar-indigo-text:#534AB7;
+  --soar-delta-text:#2a5a08;
+  --soar-delta-bg:#EAF3DE;
+  --soar-privacy-strip-border:rgba(107,31,28,0.12);
+  --soar-cta-card-bg:#EAF3DE;
+  --soar-cta-card-border:rgba(59,109,17,0.15);
+  --soar-cta-tag-bg:#FFFFFF;
+  --soar-cta-tag-text:#3B6D11;
+  --soar-cta-foot:#3B6D11;
+  --soar-accent:#6B1F1C;
+  --soar-toggle-track:#F4EFE5;
+  --soar-toggle-active-bg:#FDF9F1;
+  --soar-toggle-icon:#7A5840;
+  --soar-toggle-icon-active:#5A3800;
+  --soar-text-primary:#1f1f1f;
+  --soar-text-body:#444444;
+  --soar-text-muted:#666666;
+  --soar-text-subtle:#888888;
+  --soar-text-on-burgundy:#FFFFFF;
+  --soar-frame-bg:#1a1a1a;
+  --font-sans:'Albert Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --font-serif:'EB Garamond',Georgia,"Times New Roman",serif;
+  --font-display:'DM Serif Display','EB Garamond',Georgia,serif;
+  --soar-si-label:#A33A33;
+  --soar-si-before:#C47070;
+  --soar-si-arrow:#8B2A27;
+  --soar-si-after:#6B1F1C;
+  --soar-ri-label:#5A8A2A;
+  --soar-ri-before:#7FAD50;
+  --soar-ri-arrow:#3B6D11;
+  --soar-ri-after:#2A5208;
+}
+[data-theme="dark"]{
+  --soar-burgundy:#A33A33;
+  --soar-burgundy-accent:#D4A8A4;
+  --soar-plum:#7B4A7D;
+  --soar-page-bg:#1F1A1A;
+  --soar-card-bg:#2A2424;
+  --soar-ann-card:#3D1A18;
+  --soar-david-card:#3A2A10;
+  --soar-privacy-strip-bg:#2A2424;
+  --soar-chip-neutral:#332B2B;
+  --soar-ann-header:rgba(107,31,28,0.18);
+  --soar-david-header:rgba(90,46,92,0.18);
+  --soar-tl-quote-bg:rgba(0,0,0,0.25);
+  --soar-tl-quote-border:rgba(255,255,255,0.10);
+  --soar-border:rgba(255,255,255,0.10);
+  --soar-border-soft:rgba(255,255,255,0.08);
+  --soar-shadow:rgba(0,0,0,0.40);
+  --soar-ann-fill:#D85A55;
+  --soar-david-fill:#A87BAB;
+  --soar-ann-name:#F4C0B0;
+  --soar-david-name:#C9A0CC;
+  --soar-sage-avatar:#5A8A1F;
+  --soar-teal-avatar:#1D9E75;
+  --soar-sage:#97C459;
+  --soar-coral-text:#F0997B;
+  --soar-coral-bg:#3A1F18;
+  --soar-mint-bg:#0F2C26;
+  --soar-mint-text:#5DCAA5;
+  --soar-light-sage-bg:#1F3010;
+  --soar-light-sage-text:#97C459;
+  --soar-amber-bg:#3A2A10;
+  --soar-amber-text:#FAC775;
+  --soar-indigo-bg:#1F1A38;
+  --soar-indigo-text:#AFA9EC;
+  --soar-delta-bg:#1F3010;
+  --soar-delta-text:#97C459;
+  --soar-privacy-strip-border:rgba(216,90,85,0.20);
+  --soar-cta-card-bg:#1F3010;
+  --soar-cta-card-border:rgba(151,196,89,0.25);
+  --soar-cta-tag-bg:#2A2424;
+  --soar-cta-tag-text:#97C459;
+  --soar-cta-foot:#97C459;
+  --soar-accent:#E8B8AE;
+  --soar-toggle-track:#261810;
+  --soar-toggle-active-bg:#3A2A1C;
+  --soar-toggle-icon:#C4A882;
+  --soar-toggle-icon-active:#F5B94A;
+  --soar-text-primary:#F5F1E9;
+  --soar-text-body:#E2DDD4;
+  --soar-text-muted:#C9C2BA;
+  --soar-text-subtle:#A8A29A;
+  --soar-text-on-burgundy:#FFFFFF;
+  --soar-si-label:#D4A8A4;
+  --soar-si-before:#F0BEB5;
+  --soar-si-arrow:#E89088;
+  --soar-si-after:#FFEBE4;
+  --soar-ri-label:#97C459;
+  --soar-ri-before:#B8D880;
+  --soar-ri-arrow:#7FAD50;
+  --soar-ri-after:#D8F49E;
+  --soar-frame-bg:#0E0A0A;
+}
+
+html{scroll-behavior:smooth;}
+body{margin:0;padding:24px;background:var(--soar-frame-bg);font-family:var(--font-sans);transition:background 200ms ease;}
+.pg{max-width:1200px;margin:0 auto;font-family:var(--font-sans);color:var(--soar-text-primary);background:var(--soar-page-bg);padding:0;border-radius:16px;overflow:hidden;border:0.5px solid var(--soar-border);transition:background 200ms ease,color 200ms ease;}
+.theme-toggle{display:inline-flex;align-items:center;background:var(--soar-toggle-track);border-radius:20px;padding:2px;gap:0;height:32px;}
+.theme-toggle button{appearance:none;border:0;background:transparent;color:var(--soar-toggle-icon);font-family:inherit;cursor:pointer;transition:background 150ms ease,color 150ms ease;width:40px;height:28px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;padding:0;}
+.theme-toggle button:hover{color:var(--soar-toggle-icon-active);}
+.theme-toggle button.active{background:var(--soar-toggle-active-bg);color:var(--soar-toggle-icon-active);}
+.theme-toggle svg{width:14px;height:14px;display:block;}
+
+.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;background:var(--soar-page-bg);}
+.nav-logo{display:inline-flex;align-items:center;text-decoration:none;margin-left:-28px;}
+.nav-logo img{display:block;height:96px;width:auto;}
+.footer .l-brand img{display:block;height:96px;width:auto;}
+[data-theme="dark"] .nav-logo img{content:url('logo/soar-connect-dark-v2.svg');}
+[data-theme="dark"] .footer .l-brand img{content:url('logo/soar-connect-dark-v2.svg');}
+.nav-links{display:flex;gap:24px;font-size:13.5px;color:var(--soar-text-body);}
+.nav-actions{display:flex;align-items:center;gap:12px;}
+.btn-ghost{font-size:13px;color:var(--soar-text-primary);background:transparent;padding:8px 14px;border-radius:8px;text-decoration:none;}
+.btn-primary{font-size:13px;color:var(--soar-text-on-burgundy);background:var(--soar-burgundy);padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:500;}
+
+.hero{padding:64px 32px 56px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;background:var(--soar-page-bg);}
+.section-rule{display:flex;align-items:center;justify-content:center;gap:14px;padding:8px 32px 16px;background:var(--soar-page-bg);}
+.section-rule .line{flex:0 1 240px;height:1px;background:var(--soar-burgundy);opacity:0.25;}
+.section-rule .mark{font-family:var(--font-serif);font-style:italic;font-size:13px;color:var(--soar-burgundy);opacity:0.7;letter-spacing:0.04em;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;background:var(--soar-mint-bg);color:var(--soar-mint-text);padding:5px 12px;border-radius:999px;font-size:12.5px;font-weight:500;margin-bottom:20px;}
+.hero h1{font-family:var(--font-display);font-size:62px;line-height:1.06;font-weight:400;margin:0 0 24px;color:var(--soar-text-primary);letter-spacing:-0.02em;}
+.hero h1 .accent{color:var(--soar-accent);font-style:italic;font-family:var(--font-display);font-weight:400;}
+.hero-tagline{font-family:var(--font-sans);font-size:16.5px;line-height:1.75;font-weight:400;color:var(--soar-text-body);margin:0 0 36px;max-width:420px;letter-spacing:0.01em;}
+.hero-tagline .accent{color:var(--soar-accent);font-style:italic;font-family:inherit;font-weight:inherit;}
+.typewriter-wrap{display:inline-block;min-width:6.5em;text-align:left;white-space:nowrap;}
+.typewriter-text{color:var(--soar-accent);font-style:italic;font-family:var(--font-display);font-weight:400;display:inline;}
+.typewriter-cursor{display:inline-block;width:2px;height:0.78em;background:var(--soar-accent);margin-left:3px;vertical-align:baseline;border-radius:1px;animation:blink 0.85s step-end infinite;position:relative;top:0.04em;}
+@keyframes blink{50%{opacity:0;}}
+.hero-sub{font-size:16px;line-height:1.55;color:var(--soar-text-body);margin:0 0 24px;max-width:440px;}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;background:var(--soar-burgundy);color:var(--soar-text-on-burgundy);font-size:15px;font-weight:500;padding:14px 28px;border-radius:8px;text-decoration:none;letter-spacing:0.01em;}
+.hero-cta-row{display:flex;justify-content:flex-start;margin:0;}
+.hero-cta-row .hero-cta{margin-bottom:0;}
+.private-row{font-size:12.5px;color:var(--soar-text-muted);margin-bottom:14px;}
+.avatar-row{display:flex;align-items:center;gap:8px;}
+.avi-stack{display:flex;}
+.avi-stack .avi{width:28px;height:28px;border-radius:50%;border:2px solid var(--soar-page-bg);display:flex;align-items:center;justify-content:center;color:#fff;font-size:10.5px;font-weight:500;margin-left:-8px;}
+.avi-stack .avi:first-child{margin-left:0;}
+.avi.b{background:var(--soar-burgundy);}
+.avi.p{background:var(--soar-plum);}
+.avi.s{background:var(--soar-sage-avatar);}
+.avi.t{background:var(--soar-teal-avatar);}
+.avi.coral{background:var(--soar-coral-avatar);}
+.avi-text{font-size:12.5px;color:var(--soar-text-muted);}
+
+.hero-mock{background:var(--soar-card-bg);border-radius:14px;padding:20px;border:0.5px solid var(--soar-border);box-shadow:0 1px 2px var(--soar-shadow);}
+.mock-head{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--soar-text-muted);margin-bottom:12px;}
+.mock-head .priv{display:inline-flex;align-items:center;gap:4px;color:var(--soar-plum);}
+.mock-ask-block{display:flex;align-items:center;gap:16px;margin:0 0 22px;}
+.ask-photo{width:72px;height:72px;border-radius:12px;background-image:url('avatars/ann.jpg');background-size:cover;background-position:center;flex-shrink:0;display:block;}
+.ask-content{flex:1;min-width:0;}
+.mock-ask-line{font-family:var(--font-display);font-style:italic;font-size:22px;line-height:1.3;color:var(--soar-text-primary);margin:0;font-weight:400;letter-spacing:-0.015em;}
+.mock-ask-line .ask-prefix{color:var(--soar-text-muted);}
+.mock-keylabel{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--soar-text-muted);font-weight:500;margin:0 0 6px;}
+.mock-keys{margin-bottom:14px;}
+.mock-keys .k{display:inline-block;background:var(--soar-mint-bg);color:var(--soar-mint-text);padding:3px 9px;border-radius:9px;font-size:11px;font-weight:500;margin:0 4px 4px 0;}
+.mock-best{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--soar-text-muted);font-weight:600;margin:0 0 10px;display:grid;grid-template-columns:96px 132px 1fr;column-gap:14px;align-items:center;}
+.mock-best span{white-space:nowrap;}
+.match-row{display:grid;grid-template-columns:96px 132px 1fr;column-gap:14px;align-items:center;padding:12px 10px;margin:0 -10px;border-top:1px solid var(--soar-border);border-radius:8px;}
+.match-row:first-of-type{border-top:none;padding-top:10px;}
+.match-row.top-match{background:linear-gradient(90deg,rgba(163,58,51,0.07),rgba(163,58,51,0.02) 60%,transparent);}
+.top-star{display:inline-block;margin-left:6px;color:#A33A33;font-size:13px;line-height:1;}
+.contact-cell{display:flex;align-items:center;gap:10px;min-width:0;}
+.match-row .av{width:36px;height:36px;border-radius:8px;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0;}
+.match-row .av.plum{background:var(--soar-plum);}
+.match-row .av.sage{background:var(--soar-sage-avatar);}
+.match-row .av.teal{background:var(--soar-teal-avatar);}
+.match-row .nm{font-size:14px;font-weight:600;color:var(--soar-text-primary);line-height:1.2;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.score-block{width:100%;}
+.match-row .sc{position:relative;overflow:hidden;box-sizing:border-box;width:100%;height:36px;display:inline-flex;align-items:center;justify-content:center;padding:0 12px;border-radius:8px;font-family:var(--font-sans);font-size:16px;font-weight:600;line-height:1;letter-spacing:-0.01em;background:#F4D8D2;color:#3D1010;}
+.sc-fill{position:absolute;left:0;top:0;bottom:0;z-index:0;}
+.match-row .sc.score-high .sc-fill{background:#A33A33;}
+.match-row .sc.score-mid .sc-fill{background:#D67F71;}
+.match-row .sc.score-low .sc-fill{background:#D89A8E;}
+.sc-num{position:relative;z-index:1;}
+.row-kws{display:flex;flex-wrap:wrap;gap:4px;min-width:0;flex:1;}
+.row-kw{font-size:11px;font-weight:500;padding:4px 9px;border-radius:7px;line-height:1.3;white-space:nowrap;flex-shrink:0;}
+.row-kw.plum{background:var(--soar-david-card);color:var(--soar-david-name);}
+.row-kw.sage{background:var(--soar-light-sage-bg);color:var(--soar-light-sage-text);}
+.row-kw.teal{background:var(--soar-mint-bg);color:var(--soar-mint-text);}
+[data-theme="dark"] .row-kw.plum{background:#6B3870;color:#F2D8F6;}
+[data-theme="dark"] .row-kw.sage{background:#4A6823;color:#D8F49E;}
+[data-theme="dark"] .row-kw.teal{background:#1D6B55;color:#96EDD0;}
+.mock-foot{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:0.5px solid var(--soar-border-soft);margin-top:6px;}
+.mock-wa{font-size:12px;color:var(--soar-teal);}
+.mock-send{font-size:12.5px;color:var(--soar-burgundy);font-weight:500;}
+.mock-caption{font-size:11.5px;color:var(--soar-text-muted);line-height:1.5;margin:14px 0 0;padding-top:12px;border-top:0.5px solid var(--soar-border-soft);}
+
+.sec{padding:56px 32px;background:var(--soar-page-bg);}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--soar-text-muted);font-weight:500;margin:0 0 12px;}
+.h2{font-family:var(--font-display);font-size:42px;font-weight:400;color:var(--soar-text-primary);margin:0 0 20px;line-height:1.12;letter-spacing:-0.02em;max-width:760px;}
+.h2 .accent{color:var(--soar-accent);font-style:italic;font-family:var(--font-display);font-weight:400;}
+.h3{font-family:var(--font-display);font-size:32px;font-weight:400;color:var(--soar-text-primary);margin:0 0 18px;letter-spacing:-0.02em;line-height:1.18;}
+.h3 .accent{color:var(--soar-accent);font-style:normal;font-family:inherit;}
+.h3-sub{font-family:var(--font-serif);font-style:italic;font-size:18px;color:var(--soar-text-muted);margin:-8px 0 0;line-height:1.4;}
+.sec-sub{font-size:15.5px;line-height:1.65;color:var(--soar-text-body);margin:0 0 28px;max-width:680px;}
+.bullet-list{list-style:none;padding:0;margin:0;}
+.bullet-list li{display:flex;gap:10px;font-size:14.5px;line-height:1.6;color:var(--soar-text-primary);margin-bottom:12px;}
+.bullet-list li::before{content:"\25C6";color:var(--soar-burgundy);font-size:11px;flex-shrink:0;margin-top:6px;}
+
+.steps3{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px;}
+.s3box{border-radius:12px;padding:22px 20px;border:0.5px solid var(--soar-border-soft);}
+.s3box.s1{background:var(--soar-coral-bg);}
+.s3box.s2{background:var(--soar-mint-bg);}
+.s3box.s3{background:var(--soar-light-sage-bg);}
+.s3-head{display:flex;align-items:baseline;gap:10px;margin-bottom:10px;}
+.s3-num{font-size:12.5px;font-weight:600;margin:0;color:var(--soar-text-primary);flex-shrink:0;font-family:var(--font-sans);letter-spacing:0.04em;}
+.s3box h4{font-size:15.5px;font-weight:500;margin:0;line-height:1.3;}
+.s3box.s1 h4,.s3box.s1 p{color:var(--soar-coral-text);}
+.s3box.s2 h4,.s3box.s2 p{color:var(--soar-mint-text);}
+.s3box.s3 h4,.s3box.s3 p{color:var(--soar-light-sage-text);}
+.s3box p{font-size:13px;line-height:1.55;margin:0;}
+
+.two-sides{padding:24px 32px 56px;background:var(--soar-page-bg);}
+.ss-example{background:var(--soar-card-bg);border-radius:12px;padding:18px 22px;border:1px solid var(--soar-border);margin-top:24px;max-width:560px;box-shadow:0 1px 2px var(--soar-shadow);}
+.ss-example-head{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:14px;line-height:1.4;color:var(--soar-text-primary);margin-bottom:14px;}
+.ss-example-head .tl-av{width:24px;height:24px;font-size:12px;}
+.ss-example-quote{font-family:var(--font-serif);font-style:italic;font-size:18px;line-height:1.45;color:var(--soar-text-primary);margin:0;font-weight:500;}
+.trust-header{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:16px;}
+.trust-header .h2{margin:0;}
+.trust-header .hero-cta{margin-bottom:0;}
+.z-headers{display:grid;grid-template-columns:1fr 56px 1fr;column-gap:14px;margin:28px 0 18px;}
+.z-header{display:inline-flex;align-items:center;gap:8px;padding:0;background:transparent;font-family:var(--font-serif);font-style:italic;font-size:22px;font-weight:500;letter-spacing:-0.005em;line-height:1.25;width:fit-content;}
+.z-header.left{grid-column:1;color:var(--soar-ann-name);}
+.z-header.right{grid-column:3;color:var(--soar-david-name);}
+.z-header svg{width:18px;height:18px;flex-shrink:0;}
+.z-grid{display:flex;flex-direction:column;gap:18px;margin-top:24px;}
+.z-row{display:flex;align-items:stretch;gap:0;width:88%;}
+.z-row.chat-left{align-self:flex-start;}
+.z-row.chat-right{align-self:flex-end;margin-left:auto;}
+.z-card{position:relative;border-radius:14px;padding:0;border:0.5px solid var(--soar-border);overflow:hidden;display:flex;flex-direction:column;flex:1;box-shadow:0 1px 3px var(--soar-shadow);}
+.z-card.chat-left{align-self:flex-start;}
+.z-card.chat-right{align-self:flex-end;}
+@media(max-width:768px){.z-row{width:96%;}}
+.ann-card{background:#FFFFFF;}
+.david-card{background:#FFFFFF;}
+[data-theme="dark"] .ann-card{background:#221A1A;}
+[data-theme="dark"] .david-card{background:#1E1820;}
+.tl-top{padding:14px 18px;border-bottom:0.5px solid var(--soar-border);display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:14px;line-height:1.4;color:var(--soar-text-primary);}
+.ann-card .tl-top{background:var(--soar-ann-header);}
+.david-card .tl-top{background:var(--soar-david-header);}
+.tl-num{font-family:var(--font-sans);font-size:15px;font-weight:600;line-height:1;margin-right:3px;}
+.ann-card .tl-num{color:var(--soar-ann-name);}
+.david-card .tl-num{color:var(--soar-david-name);}
+.tl-av{width:36px;height:36px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#fff;flex-shrink:0;}
+.tl-av.ann{background:var(--soar-burgundy);}
+.tl-av.david{background:var(--soar-plum);}
+.tl-av.group{background:var(--soar-sage-avatar);font-size:12px;}
+.tl-name-ann{color:var(--soar-ann-name);font-weight:500;}
+.tl-name-david{color:var(--soar-david-name);font-weight:500;}
+.tl-verb{color:var(--soar-text-body);font-weight:500;font-family:inherit;font-style:normal;font-size:14px;}
+.tl-sc{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;padding:5px 10px;border-radius:7px;font-family:var(--font-sans);font-size:13px;font-weight:600;line-height:1;letter-spacing:-0.01em;margin-left:auto;min-width:56px;color:#3D1010;}
+.tl-sc.score-high{background:#E8C2BC;color:#3D1010;}
+.tl-sc.score-mid{background:#EFCEC8;}
+.tl-sc.score-low{background:#F5DDD7;}
+.tl-sc .sc-fill{position:absolute;left:0;top:0;bottom:0;z-index:0;}
+.tl-sc.score-high .sc-fill{background:#A33A33;}
+.tl-sc.score-mid .sc-fill{background:#D67F71;}
+.tl-sc.score-low .sc-fill{background:#D89A8E;}
+.tl-sc .sc-num{position:relative;z-index:1;}
+.tl-sc.score-high .sc-num{color:#F7E3DE;}
+.tl-top .tl-delta,.tl-top .tl-rep-pill{margin-left:0;}
+.tl-body{padding:14px 18px 16px 18px;display:flex;flex-direction:column;flex:1 1 auto;}
+.tl-quote{font-family:var(--font-display);font-size:18px;line-height:1.4;color:var(--soar-text-primary);margin:0;font-style:italic;font-weight:400;letter-spacing:-0.01em;}
+.tl-score-box{background:var(--soar-card-bg);border-radius:8px;padding:12px 14px;border:0.5px solid var(--soar-border-soft);margin-top:auto;}
+.tl-routing-banner{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin:0 0 10px;display:flex;align-items:center;gap:6px;padding-bottom:8px;border-bottom:0.5px solid var(--soar-border);}
+.tl-routing-banner.ann-bb{color:var(--soar-ann-name);}
+.tl-routing-banner.david-bb{color:var(--soar-david-name);}
+.who-chip-david{display:inline-flex;align-items:center;gap:5px;background:#FFFFFF;border:0.5px solid rgba(15,110,86,.28);color:#0F6E56;padding:2px 8px;border-radius:10px;font-size:11.5px;font-weight:500;}
+.who-chip-ann{display:inline-flex;align-items:center;gap:5px;background:#FFFFFF;border:0.5px solid rgba(59,109,17,.28);color:#3B6D11;padding:2px 8px;border-radius:10px;font-size:11.5px;font-weight:500;}
+[data-theme="dark"] .who-chip-david{background:rgba(255,255,255,.08);border:0.5px solid rgba(150,237,208,.22);color:#96EDD0;}
+[data-theme="dark"] .who-chip-ann{background:rgba(255,255,255,.08);border:0.5px solid rgba(212,248,158,.22);color:#D8F49E;}
+.tl-inline-score{display:flex;align-items:baseline;gap:8px;margin:2px 0 0;flex-wrap:wrap;}
+.tl-inline-score .soar-label{font-size:16px;font-weight:500;color:var(--soar-text-primary);line-height:1.2;font-family:var(--font-serif);}
+.tl-inline-score .tl-score-value{font-size:18px;font-weight:500;color:var(--soar-text-primary);line-height:1.2;font-family:var(--font-serif);}
+.tl-delta{display:inline-flex;align-items:center;gap:2px;font-size:11.5px;font-weight:500;color:var(--soar-delta-text);background:var(--soar-delta-bg);padding:2px 7px;border-radius:10px;margin-left:auto;}
+.tl-rep-pill{display:inline-flex;align-items:center;gap:3px;font-size:11.5px;font-weight:500;color:var(--soar-amber-text);background:var(--soar-amber-bg);padding:2px 7px;border-radius:10px;}
+.tl-bar-track{position:relative;height:8px;background:var(--soar-chip-neutral);border-radius:4px;margin:10px 0 6px;overflow:visible;}
+.tl-bar-fill{position:absolute;top:0;left:0;height:100%;border-radius:4px;}
+.ann-card .tl-bar-fill{background:var(--soar-ann-fill);}
+.david-card .tl-bar-fill{background:var(--soar-david-fill);}
+.tl-bar-tick{position:absolute;top:-3px;width:3px;height:14px;border-radius:1.5px;background:var(--soar-card-bg);box-shadow:0 0 0 1px var(--soar-border);transform:translateX(-50%);}
+.tl-bar-scale{display:flex;justify-content:space-between;font-size:10px;color:var(--soar-text-subtle);font-weight:500;margin:0 0 12px;}
+.tl-keys-label{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--soar-text-muted);font-weight:500;margin:0 0 6px;}
+.tl-keys{display:flex;flex-wrap:wrap;gap:5px;align-items:center;}
+.tl-top .tl-keys{margin-left:8px;}
+.tl-keys .k-david,.tl-keys .k-ann{padding:3px 10px;border-radius:10px;font-size:11.5px;font-weight:500;white-space:nowrap;}
+.tl-keys .k-david{background:#FFFFFF;border:0.5px solid rgba(15,110,86,.28);color:#0F6E56;}
+.tl-keys .k-ann{background:#FFFFFF;border:0.5px solid rgba(59,109,17,.28);color:#3B6D11;}
+[data-theme="dark"] .tl-keys .k-david{background:rgba(255,255,255,.08);border:0.5px solid rgba(150,237,208,.22);color:#96EDD0;}
+[data-theme="dark"] .tl-keys .k-ann{background:rgba(255,255,255,.08);border:0.5px solid rgba(212,248,158,.22);color:#D8F49E;}
+.z-arrow{display:flex;align-items:center;justify-content:center;color:var(--soar-text-subtle);}
+.z-arrow svg{width:32px;height:32px;}
+
+.z-card .tl-av{width:44px;height:44px;border-radius:10px;font-size:17px;}
+.tl-id{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0;}
+.tl-name-row{display:flex;align-items:center;gap:6px;width:100%;}
+.tl-scores-right{display:flex;align-items:baseline;gap:10px;flex-shrink:0;}
+.tl-id .tl-keys{display:flex;flex-wrap:wrap;gap:4px;margin-left:0;margin-top:2px;}
+.tl-score-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:1px;}
+.soar-score-inline,.rep-inline{display:flex;align-items:baseline;gap:2px;}
+.si-label{font-size:8.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--soar-si-label);margin-right:3px;}
+.si-before{font-size:11.5px;font-weight:500;color:var(--soar-si-before);}
+.si-arrow{font-size:10px;margin:0 2px;color:var(--soar-si-arrow);}
+.si-after{font-size:13px;font-weight:700;color:var(--soar-si-after);}
+.ri-label{font-size:8.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--soar-ri-label);margin-right:4px;}
+.ri-before{font-size:11.5px;font-weight:500;color:var(--soar-ri-before);}
+.ri-arrow{font-size:10px;margin:0 2px;color:var(--soar-ri-arrow);}
+.ri-after{font-size:13px;font-weight:700;color:var(--soar-ri-after);}
+.ask-reply-pill{font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:3px 9px;border-radius:10px;flex-shrink:0;align-self:center;margin-left:auto;}
+.ask-reply-pill.pill-ask{background:var(--soar-amber-bg);color:var(--soar-amber-text);}
+.ask-reply-pill.pill-reply{background:var(--soar-mint-bg);color:var(--soar-mint-text);}
+
+.privacy-strip{margin-top:28px;background:var(--soar-privacy-strip-bg);border-radius:12px;padding:18px 22px;display:flex;align-items:center;gap:18px;border:0.5px solid var(--soar-privacy-strip-border);}
+.privacy-strip .ps-item{display:flex;align-items:center;gap:12px;flex:1;min-width:0;}
+.privacy-strip .ps-divider{width:1px;align-self:stretch;background:var(--soar-privacy-strip-border);flex-shrink:0;}
+.privacy-strip .lock-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.privacy-strip .lock-icon.priv{background:var(--soar-ann-card);color:var(--soar-ann-name);font-size:16px;}
+.privacy-strip .lock-icon.intg{background:var(--soar-mint-bg);color:var(--soar-mint-text);}
+.privacy-strip .lock-icon.intg svg{width:18px;height:18px;}
+.intg-logos{display:flex;align-items:center;gap:8px;}
+.intg-logo{width:26px;height:26px;border-radius:5px;flex-shrink:0;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.12));}
+.privacy-strip p{font-size:14px;line-height:1.5;color:var(--soar-text-primary);margin:0;}
+.privacy-strip strong{color:var(--soar-ann-name);font-weight:500;}
+.privacy-strip .ps-item.intg strong{color:var(--soar-mint-text);font-weight:500;}
+
+.bridge{padding:64px 32px;text-align:center;background:var(--soar-page-bg);}
+.bridge-rule{width:48px;height:1px;background:var(--soar-burgundy);margin:0 auto 28px;opacity:0.4;}
+.bridge p{font-family:var(--font-display);font-style:italic;font-size:28px;line-height:1.35;color:var(--soar-text-primary);margin:0 auto;max-width:720px;letter-spacing:-0.01em;font-weight:400;}
+.bridge p .accent{color:var(--soar-accent);font-family:var(--font-display);}
+.bridge-rule-bot{width:48px;height:1px;background:var(--soar-burgundy);margin:28px auto 0;opacity:0.4;}
+
+.sab-photo{width:36px;height:36px;border-radius:8px;background-size:cover;background-position:center;flex-shrink:0;display:block;}
+.sab-photo.ann{background-image:url('avatars/ann.jpg');}
+.sab-photo.david{background-image:url('avatars/david.jpg');}
+.sab-photo.sofia{background-image:url('avatars/sofia.jpg');}
+.sab-photo.ben{background-image:url('avatars/ben.jpg');}
+.gf-card{background:var(--soar-card-bg);border:1px solid var(--soar-border);border-radius:16px;overflow:hidden;box-shadow:0 1px 3px var(--soar-shadow);margin-top:24px;}
+.gf-head{padding:22px 26px 18px;border-bottom:1px solid var(--soar-border);display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.gf-meta{display:flex;flex-direction:column;gap:8px;min-width:0;flex:1;}
+.gf-name{font-family:var(--font-display);font-size:28px;font-weight:400;color:var(--soar-text-primary);line-height:1.1;letter-spacing:-0.015em;margin:0;}
+.gf-tagline{font-family:var(--font-sans);font-size:14.5px;line-height:1.5;color:var(--soar-text-body);margin:0;max-width:560px;}
+.gf-stack{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.gf-faces{display:flex;}
+.gf-face{width:32px;height:32px;border-radius:50%;border:2px solid var(--soar-card-bg);background-size:cover;background-position:center;margin-left:-10px;}
+.gf-face:first-child{margin-left:0;}
+.gf-face.f-ann{background-image:url('avatars/ann.jpg');}
+.gf-face.f-david{background-image:url('avatars/david.jpg');}
+.gf-face.f-sofia{background-image:url('avatars/sofia.jpg');}
+.gf-face.f-ben{background-image:url('avatars/ben.jpg');}
+.gf-count{font-family:var(--font-sans);font-size:13px;font-weight:500;color:var(--soar-text-muted);}
+.gf-priv{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:999px;font-family:var(--font-sans);font-size:11.5px;font-weight:600;background:var(--soar-light-sage-bg);color:var(--soar-light-sage-text);letter-spacing:0.02em;}
+.gf-body{display:grid;grid-template-columns:1fr 1fr;}
+.gf-block{padding:22px 26px;}
+.gf-block+.gf-block{border-left:1px solid var(--soar-border);}
+.gf-block-label{font-family:var(--font-sans);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--soar-text-muted);font-weight:600;margin:0 0 10px;}
+.gf-ask-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-family:var(--font-sans);font-size:13px;color:var(--soar-text-body);}
+.gf-ask-row .sab-photo{width:28px;height:28px;}
+.gf-ask-row strong{color:var(--soar-text-primary);font-weight:600;}
+.gf-ask-quote{font-family:var(--font-display);font-style:italic;font-size:17px;line-height:1.35;color:var(--soar-text-primary);margin:0 0 6px;letter-spacing:-0.01em;}
+.gf-ask-meta{font-family:var(--font-sans);font-size:12px;color:var(--soar-text-muted);}
+.gf-ask-meta strong{color:var(--soar-ann-name);font-weight:600;}
+.gf-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.gf-stat{display:flex;flex-direction:column;gap:2px;}
+.gf-stat-num{font-family:var(--font-display);font-size:22px;font-weight:400;color:var(--soar-text-primary);line-height:1.1;letter-spacing:-0.01em;}
+.gf-stat-label{font-family:var(--font-sans);font-size:11.5px;color:var(--soar-text-muted);}
+.gf-connector{display:flex;align-items:center;gap:10px;margin-top:6px;padding-top:14px;border-top:1px solid var(--soar-border);}
+.gf-connector .sab-photo{width:32px;height:32px;}
+.gf-connector-text{font-family:var(--font-sans);font-size:13px;color:var(--soar-text-body);}
+.gf-connector-text strong{color:var(--soar-text-primary);font-weight:600;}
+.gf-others{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+.gf-other{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:var(--soar-card-bg);border:1px solid var(--soar-border);font-family:var(--font-sans);font-size:13px;color:var(--soar-text-body);}
+.gf-other strong{color:var(--soar-text-primary);font-weight:600;}
+.gf-other .priv-chip{font-size:10px;padding:2px 7px;}
+.gf-create{margin-top:18px;font-family:var(--font-sans);font-size:14.5px;color:var(--soar-text-body);}
+.gf-create strong{color:var(--soar-text-primary);font-weight:600;}
+.priv-chip{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:999px;font-weight:500;font-size:11.5px;}
+.priv-chip.public{background:var(--soar-light-sage-bg);color:var(--soar-light-sage-text);}
+.priv-chip.private{background:var(--soar-amber-bg);color:var(--soar-amber-text);}
+.priv-chip.invite{background:var(--soar-indigo-bg);color:var(--soar-indigo-text);}
+
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px;}
+.diff-tile{background:var(--soar-card-bg);border:0.5px solid var(--soar-border);border-radius:14px;padding:22px 20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 1px 2px var(--soar-shadow);}
+.diff-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.diff-title{font-family:var(--font-display);font-size:18px;font-weight:400;color:var(--soar-text-primary);margin:0;letter-spacing:-0.01em;line-height:1.2;}
+.diff-body{font-size:13.5px;line-height:1.6;color:var(--soar-text-body);margin:0;}
+@media(max-width:768px){.diff-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.diff-grid{grid-template-columns:1fr;}}
+
+.cta-wrap{padding:48px 32px 56px;background:var(--soar-page-bg);}
+.cta-card{background:var(--soar-cta-card-bg);border-radius:16px;padding:48px 52px;border:0.5px solid var(--soar-cta-card-border);display:flex;align-items:center;gap:56px;}
+.cta-left{flex:1;min-width:0;}
+.cta-right{display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cta-tag{display:inline-block;font-family:var(--font-sans);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--soar-cta-tag-text);margin:0 0 20px;}
+.cta-pre{font-family:var(--font-display);font-size:56px;font-weight:400;line-height:1.05;letter-spacing:-0.025em;color:var(--soar-text-primary);margin:0 0 24px;}
+.cta-pre .accent{color:var(--soar-accent);font-style:italic;}
+.cta-card h2{font-family:var(--font-display);font-size:28px;font-weight:400;margin:0 0 14px;line-height:1.15;color:var(--soar-text-primary);letter-spacing:-0.015em;}
+.cta-card h2 .accent{color:var(--soar-light-sage-text);font-style:italic;font-family:var(--font-display);}
+.cta-card p{font-size:15.5px;line-height:1.65;color:var(--soar-text-primary);margin:0 0 20px;max-width:480px;}
+.cta-button{display:inline-flex;align-items:center;justify-content:center;background:var(--soar-burgundy);color:var(--soar-text-on-burgundy);font-weight:500;padding:16px 32px;border-radius:10px;text-decoration:none;font-size:15px;white-space:nowrap;}
+.cta-foot{font-size:12.5px;color:var(--soar-cta-foot);margin:0;}
+
+.footer{padding:32px;background:var(--soar-page-bg);border-top:0.5px solid var(--soar-border-soft);display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:32px;font-size:12.5px;color:var(--soar-text-muted);}
+.footer .l-brand{display:flex;align-items:center;gap:8px;font-weight:500;color:var(--soar-text-primary);font-size:14px;margin-bottom:8px;}
+.footer .l-brand .l-mark{width:22px;height:22px;border-radius:6px;background:var(--soar-burgundy);color:var(--soar-text-on-burgundy);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;}
+.footer-col h5{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--soar-text-subtle);font-weight:500;margin:0 0 10px;}
+.footer-col a{display:block;color:var(--soar-text-body);text-decoration:none;margin-bottom:6px;}
+
+.tl-av.ann,.mock-asker .tl-av.ann{background-image:url('avatars/ann.jpg');background-size:cover;background-position:center;color:transparent;}
+.tl-av.david{background-image:url('avatars/david.jpg');background-size:cover;background-position:center;color:transparent;}
+.match-row .av.plum{background-image:url('avatars/david.jpg');background-size:cover;background-position:center;color:transparent;}
+.match-row .av.sage{background-image:url('avatars/sofia.jpg');background-size:cover;background-position:center;color:transparent;}
+.match-row .av.teal{background-image:url('avatars/ben.jpg');background-size:cover;background-position:center;color:transparent;}
+
+@media (max-width: 768px) {
+  body { padding: 8px; }
+  .pg { border-radius: 10px; }
+  .nav { padding: 12px 16px; }
+  .nav-logo { margin-left: 0; }
+  .nav-logo img { height: 56px; }
+  .nav-links { display: none; }
+  .btn-ghost { display: none; }
+  .nav-actions { gap: 8px; }
+  .theme-toggle { height: 28px; }
+  .theme-toggle button { width: 32px; height: 24px; }
+  .hero { grid-template-columns: 1fr; gap: 28px; padding: 36px 20px 36px; }
+  .hero h1 { font-size: 40px; }
+  .hero-tagline { font-size: 15px; max-width: 100%; margin-bottom: 28px; }
+  .hero-cta { font-size: 14px; padding: 12px 22px; }
+  .hero-mock { padding: 16px; }
+  .ask-photo { width: 52px; height: 52px; border-radius: 10px; flex-shrink: 0; }
+  .mock-ask-line { font-size: 16px; }
+  .mock-best { grid-template-columns: 70px 1fr; font-size: 9.5px; column-gap: 10px; }
+  .mock-best span:last-child { display: none; }
+  .match-row { grid-template-columns: 70px 1fr; column-gap: 10px; }
+  .row-kws { display: none; }
+  .sec { padding: 40px 20px; }
+  .two-sides { padding: 16px 20px 40px; }
+  .section-rule { padding: 8px 20px 16px; }
+  .priv-wrap { padding: 0 20px 28px !important; }
+  .h2 { font-size: 28px; }
+  .h3 { font-size: 24px; }
+  .h3-sub { font-size: 15px; }
+  .sec-sub { font-size: 14px; }
+  .z-card { width: 96%; }
+  .tl-top { gap: 4px; font-size: 12.5px; padding: 12px 14px; }
+  .tl-av { width: 28px; height: 28px; font-size: 12px; }
+  .tl-keys { display: none; }
+  .tl-quote { font-size: 15px; line-height: 1.45; }
+  .tl-body { padding: 12px 14px 14px; }
+  .z-headers { grid-template-columns: 1fr 32px 1fr; column-gap: 8px; margin: 20px 0 14px; }
+  .z-header { font-size: 17px; }
+  .steps3 { grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+  .privacy-strip { flex-direction: column; gap: 14px; align-items: flex-start; padding: 16px 18px; }
+  .privacy-strip .ps-divider { width: 100%; height: 1px; align-self: auto; }
+  .privacy-strip .ps-item { flex: none; width: 100%; }
+  .gf-head { flex-direction: column; gap: 14px; }
+  .gf-stack { flex-wrap: wrap; }
+  .gf-body { grid-template-columns: 1fr; }
+  .gf-block + .gf-block { border-left: none; border-top: 1px solid var(--soar-border); }
+  .gf-others { gap: 8px; }
+  .gf-other { font-size: 12px; padding: 7px 12px; }
+  .cta-wrap { padding: 32px 20px 40px; }
+  .cta-card { flex-direction: column; gap: 28px; padding: 32px 24px; }
+  .cta-pre { font-size: 38px; }
+  .cta-right { align-self: flex-start; }
+  .cta-button { padding: 14px 28px; font-size: 14px; }
+  .footer { grid-template-columns: 1fr; gap: 24px; padding: 28px 20px; }
+  .footer .l-brand img { height: 56px; }
+  .bridge { padding: 40px 20px; }
+  .bridge p { font-size: 22px; }
+  .avatar-row { flex-wrap: wrap; }
+}
+@media (max-width: 480px) {
+  body { padding: 4px; }
+  .pg { border-radius: 6px; }
+  .hero h1 { font-size: 34px; }
+  .h2 { font-size: 24px; }
+  .h3 { font-size: 21px; }
+  .cta-pre { font-size: 32px; }
+  .cta-card { padding: 24px 20px; }
+  .nav { padding: 10px 14px; }
+  .nav-logo img { height: 48px; }
+  .tl-sc { min-width: 44px; font-size: 11px; }
+}
+.mob-menu-btn { display: none; }
+.mob-menu {
+  display: none; position: fixed; inset: 0; z-index: 400;
+  background: var(--soar-page-bg); flex-direction: column;
+  padding: 20px 24px 32px; overflow-y: auto;
+}
+.mob-menu.open { display: flex; }
+.mob-menu-top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 32px;
+}
+.mob-menu-close {
+  background: none; border: 1px solid var(--soar-border); border-radius: 8px;
+  cursor: pointer; color: var(--soar-text-muted); width: 36px; height: 36px;
+  font-size: 20px; display: flex; align-items: center; justify-content: center;
+}
+.mob-menu-close:hover { color: var(--soar-text-primary); border-color: var(--soar-text-muted); }
+.mob-menu nav { display: flex; flex-direction: column; flex: 1; }
+.mob-menu nav a {
+  font-family: var(--font-display); font-size: 32px; font-weight: 400;
+  color: var(--soar-text-primary); text-decoration: none; letter-spacing: -0.02em;
+  padding: 16px 0; border-bottom: 0.5px solid var(--soar-border-soft); line-height: 1.1;
+}
+.mob-menu nav a:last-child { border-bottom: none; }
+.mob-menu nav a:active { color: var(--soar-burgundy); }
+.mob-menu-footer {
+  display: flex; flex-direction: column; gap: 10px; margin-top: 32px; padding-top: 24px;
+  border-top: 0.5px solid var(--soar-border-soft);
+}
+.mob-menu-footer .mob-signin {
+  font-size: 14px; color: var(--soar-text-body); text-decoration: none;
+  padding: 11px 16px; border: 1px solid var(--soar-border); border-radius: 8px;
+  text-align: center; font-weight: 500;
+}
+.mob-menu-footer .mob-cta {
+  font-size: 14px; font-weight: 500; color: var(--soar-text-on-burgundy);
+  background: var(--soar-burgundy); padding: 13px 16px; border-radius: 8px;
+  text-decoration: none; text-align: center;
+}
+@media (max-width: 768px) {
+  .mob-menu-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: none; border: 1px solid var(--soar-border); border-radius: 8px;
+    width: 36px; height: 36px; cursor: pointer; color: var(--soar-text-primary); flex-shrink: 0;
+  }
+  .mob-menu-btn svg { width: 16px; height: 16px; display: block; }
+  .nav-actions .btn-primary { display: none; }
+  .priv-wrap { padding: 0 20px 28px !important; }
+}
+</style>
+</head>
+<body>
+<div class="pg">
+<nav class="nav">
+  <a href="#" class="nav-logo"><img src="logo/soar-connect-light-v2.svg" alt="SOAR Connect"></a>
+  <div class="nav-links"><a href="#soar-score" style="color:inherit;text-decoration:none;">SOAR Score</a><a href="#how-it-works" style="color:inherit;text-decoration:none;">How it works</a><a href="#groups" style="color:inherit;text-decoration:none;">Groups</a><a href="#what-makes-soar-different" style="color:inherit;text-decoration:none;">Why SOAR</a></div>
+  <div class="nav-actions">
+    <div class="theme-toggle" role="tablist" aria-label="Theme">
+      <button id="theme-system" class="active" aria-label="System" aria-pressed="true" title="System">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="12" height="9" rx="1.5"/><line x1="6" y1="14" x2="10" y2="14"/><line x1="8" y1="12" x2="8" y2="14"/></svg>
+      </button>
+      <button id="theme-light" aria-label="Light" aria-pressed="false" title="Light">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><line x1="8" y1="1.5" x2="8" y2="3"/><line x1="8" y1="13" x2="8" y2="14.5"/><line x1="1.5" y1="8" x2="3" y2="8"/><line x1="13" y1="8" x2="14.5" y2="8"/><line x1="3.4" y1="3.4" x2="4.4" y2="4.4"/><line x1="11.6" y1="11.6" x2="12.6" y2="12.6"/><line x1="3.4" y1="12.6" x2="4.4" y2="11.6"/><line x1="11.6" y1="4.4" x2="12.6" y2="3.4"/></svg>
+      </button>
+      <button id="theme-dark" aria-label="Dark" aria-pressed="false" title="Dark">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.5 10.5A5 5 0 1 1 6.5 4 4 4 0 0 0 11.5 10.5Z"/></svg>
+      </button>
+    </div>
+    <a href="#" class="btn-ghost">Sign in</a>
+    <a href="#" class="btn-primary">Start with trust</a>
+    <button class="mob-menu-btn" id="mob-menu-open" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="2" y1="4" x2="14" y2="4"/><line x1="2" y1="8" x2="14" y2="8"/><line x1="2" y1="12" x2="14" y2="12"/></svg>
+    </button>
+  </div>
+</nav>
+<div class="mob-menu" id="mob-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="mob-menu-top">
+    <a href="#" class="nav-logo" style="margin-left:0;"><img src="logo/soar-connect-light-v2.svg" alt="SOAR Connect" style="height:56px;"></a>
+    <button class="mob-menu-close" id="mob-menu-close" aria-label="Close menu">&times;</button>
+  </div>
+  <nav>
+    <a href="#soar-score">SOAR Score</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="#groups">Groups</a>
+  </nav>
+  <div class="mob-menu-footer">
+    <a href="#" class="mob-signin">Sign in</a>
+    <a href="#" class="mob-cta">Start with trust</a>
+  </div>
+</div>
+<section class="hero">
+  <div>
+    <h1>Who do I <span class="accent">ask?</span></h1>
+    <p class="hero-tagline">SOAR shows you who to ask based on reputation, responsiveness, and relevance. When you respond to what matters most, meaningful friendship and support emerge. Be the person people want to reply to.</p>
+    <div class="hero-cta-row"><a href="#" class="hero-cta">Start with trust</a></div>
+  </div>
+  <div class="hero-mock">
+    <div class="mock-ask-block">
+      <span class="ask-photo" aria-label="Ann"></span>
+      <div class="ask-content">
+        <p class="mock-ask-line">&ldquo;Who can help me evaluate a Series A term sheet?&rdquo;</p>
+      </div>
+    </div>
+    <div class="mock-best"><span>SOAR Score</span><span>Who you can count on</span><span></span></div>
+    <div class="match-row top-match">
+      <div class="score-block"><span class="sc score-high"><span class="sc-fill" style="width:71.3%;"></span><span class="sc-num">10.7</span></span></div>
+      <div class="contact-cell"><span class="av plum">D</span><span class="nm">David<span class="top-star" title="Top match">&#10022;</span></span></div>
+      <div class="row-kws"><span class="row-kw plum">Angel Investor</span><span class="row-kw plum">Term Sheets</span><span class="row-kw plum">Founder</span></div>
+    </div>
+    <div class="match-row">
+      <div class="score-block"><span class="sc score-mid"><span class="sc-fill" style="width:61.3%;"></span><span class="sc-num">9.2</span></span></div>
+      <div class="contact-cell"><span class="av sage">S</span><span class="nm">Sofia</span></div>
+      <div class="row-kws"><span class="row-kw sage">Fundraising</span><span class="row-kw sage">CFO Networks</span><span class="row-kw sage">TEDx</span></div>
+    </div>
+    <div class="match-row">
+      <div class="score-block"><span class="sc score-low"><span class="sc-fill" style="width:45.3%;"></span><span class="sc-num">6.8</span></span></div>
+      <div class="contact-cell"><span class="av teal">B</span><span class="nm">Ben</span></div>
+      <div class="row-kws"><span class="row-kw teal">Series A</span><span class="row-kw teal">Venture Capital</span><span class="row-kw teal">Philanthropist</span></div>
+    </div>
+  </div>
+</section>
+<div class="bridge" style="padding:48px 32px;">
+  <div class="bridge-rule"></div>
+  <p>&ldquo;Relationships are the world&rsquo;s most valuable currency &mdash; but we&rsquo;ve never had a system to manage them.&rdquo;</p>
+  <div class="bridge-rule-bot"></div>
+</div>
+<section class="two-sides">
+  <h3 class="h3">What <span class="accent">showing up</span> looks like on both sides of the ask.</h3>
+  <div class="z-grid">
+    <div class="z-row chat-left">
+    <div class="z-card ann-card">
+      <div class="tl-top">
+        <span class="tl-av ann"></span>
+        <div class="tl-id">
+          <div class="tl-name-row">
+            <span class="tl-name-ann">Ann</span>
+            <div class="tl-scores-right">
+              <div class="soar-score-inline">
+                <span class="si-label">SOAR</span>
+                <span class="si-before">12.3</span>
+                <span class="si-arrow">&#8594;</span>
+                <span class="si-after">13.5</span>
+              </div>
+              <div class="rep-inline">
+                <span class="ri-label">Rep</span>
+                <span class="ri-before">50</span>
+                <span class="ri-arrow">&#8594;</span>
+                <span class="ri-after">55</span>
+              </div>
+            </div>
+          </div>
+          <div class="tl-keys">
+            <span class="k-ann">UCL</span>
+            <span class="k-ann">Greek</span>
+            <span class="k-ann">Coldplay</span>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="tl-body">
+        <p class="tl-quote">&ldquo;Can you help me evaluate a Series A term sheet?&rdquo;</p>
+      </div>
+    </div>
+    </div>
+    <div class="z-row chat-right">
+    <div class="z-card david-card">
+      <div class="tl-top">
+        <span class="tl-av david"></span>
+        <div class="tl-id">
+          <div class="tl-name-row">
+            <span class="tl-name-david">David</span>
+            <div class="tl-scores-right">
+              <div class="soar-score-inline">
+                <span class="si-label">SOAR</span>
+                <span class="si-before">10.7</span>
+                <span class="si-arrow">&#8594;</span>
+                <span class="si-after">12.3</span>
+              </div>
+              <div class="rep-inline">
+                <span class="ri-label">Rep</span>
+                <span class="ri-before">48</span>
+                <span class="ri-arrow">&#8594;</span>
+                <span class="ri-after">52</span>
+              </div>
+            </div>
+          </div>
+          <div class="tl-keys">
+            <span class="k-david">Angel Investor</span>
+            <span class="k-david">Term Sheets</span>
+            <span class="k-david">Founder</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-body">
+        <p class="tl-quote">&ldquo;Hi Ann, happy to take a look. I just funded a startup last quarter, so the redlines are fresh. Send me the term sheet and your calendly link.&rdquo;</p>
+      </div>
+    </div>
+    </div>
+    <div class="z-row chat-left">
+    <div class="z-card david-card">
+      <div class="tl-top">
+        <span class="tl-av david"></span>
+        <div class="tl-id">
+          <div class="tl-name-row">
+            <span class="tl-name-david">David</span>
+            <div class="tl-scores-right">
+              <div class="soar-score-inline">
+                <span class="si-label">SOAR</span>
+                <span class="si-before">12.3</span>
+                <span class="si-arrow">&#8594;</span>
+                <span class="si-after">13.8</span>
+              </div>
+              <div class="rep-inline">
+                <span class="ri-label">Rep</span>
+                <span class="ri-before">52</span>
+                <span class="ri-arrow">&#8594;</span>
+                <span class="ri-after">56</span>
+              </div>
+            </div>
+          </div>
+          <div class="tl-keys">
+            <span class="k-david">Angel Investor</span>
+            <span class="k-david">Term Sheets</span>
+            <span class="k-david">Founder</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-body">
+        <p class="tl-quote">&ldquo;Hi Ann, congratulations on closing your Series A. I noticed you&rsquo;re tagged Coldplay &mdash; curious if you know anyone who can get me an introduction to Chris Martin?&rdquo;</p>
+      </div>
+    </div>
+    </div>
+    <div class="z-row chat-right">
+    <div class="z-card ann-card">
+      <div class="tl-top">
+        <span class="tl-av ann"></span>
+        <div class="tl-id">
+          <div class="tl-name-row">
+            <span class="tl-name-ann">Ann</span>
+            <div class="tl-scores-right">
+              <div class="soar-score-inline">
+                <span class="si-label">SOAR</span>
+                <span class="si-before">13.5</span>
+                <span class="si-arrow">&#8594;</span>
+                <span class="si-after">14.8</span>
+              </div>
+              <div class="rep-inline">
+                <span class="ri-label">Rep</span>
+                <span class="ri-before">55</span>
+                <span class="ri-arrow">&#8594;</span>
+                <span class="ri-after">59</span>
+              </div>
+            </div>
+          </div>
+          <div class="tl-keys">
+            <span class="k-ann">UCL</span>
+            <span class="k-ann">Greek</span>
+            <span class="k-ann">Coldplay</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-body">
+        <p class="tl-quote">&ldquo;Hi David, I studied Greek with Chris at University College of London and he dated my sister. Would you like to meet the band backstage before the concert on Friday?&rdquo;</p>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+<section class="sec" id="soar-score">
+  <p class="eyebrow">The SOAR Score</p>
+  <h2 class="h2">SOAR stands for <span class="accent">Strength of Authentic Relationships.</span></h2>
+  <p class="sec-sub">A way to understand who you can actually reach &mdash; not just who you know.</p>
+  <p class="sec-sub" style="margin-top:16px;">Most networks show you who you know. SOAR shows you who you can actually reach. Every contact has a connection strength score, based on real communication and trust signals like email frequency, message history, and recency of interaction. It&rsquo;s the difference between a contact and a connection that matters.</p>
+</section>
+<div class="priv-wrap" style="padding:0 32px 32px;background:var(--soar-page-bg);">
+  <div class="privacy-strip" style="margin-top:0;">
+    <div class="ps-item">
+      <div class="lock-icon priv">&#128274;</div>
+      <p><strong>Your Smart Address Book is private by default</strong> &mdash; only you see your SOAR Scores and contact profiles.</p>
+    </div>
+    <div class="ps-divider"></div>
+    <div class="ps-item">
+      <div class="lock-icon priv" style="background:#fff;border:1.5px solid rgba(107,31,28,0.15);">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28">
+          <rect x="4" y="14" width="28" height="11" rx="1.5" fill="white" stroke="#9CA3AF" stroke-width="1.2"/>
+          <polyline points="4,14 10,18 26,18 32,14" fill="none" stroke="#9CA3AF" stroke-width="1.2" stroke-linejoin="round"/>
+          <circle cx="18" cy="19" r="15.5" stroke="#DC2626" stroke-width="2.4" fill="none"/>
+          <line x1="29" y1="8" x2="7" y2="30" stroke="#DC2626" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <p><strong>No spam. No leaks. No cold outreach.</strong> Your contacts are never approached without your explicit approval.</p>
+    </div>
+    <div class="ps-divider"></div>
+    <div class="ps-item intg">
+      <div class="lock-icon intg"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5h-2.5a3.5 3.5 0 0 0 0 7H8"/><path d="M10 5h2.5a3.5 3.5 0 0 1 0 7H10"/><line x1="6" y1="8.5" x2="12" y2="8.5"/></svg></div>
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;width:100%;justify-content:space-between;">
+          <strong>Integrates with</strong>
+          <div class="intg-logos">
+            <svg class="intg-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="Gmail">
+              <path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 17.5V6.5z" fill="#fff" stroke="#E5E7EB" stroke-width="0.5"/>
+              <path d="M4.5 4L12 9.5 19.5 4" fill="none" stroke="#EA4335" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M2 7v10.5A2.5 2.5 0 0 0 4.5 20H7V9.5L2 7z" fill="#4285F4"/>
+              <path d="M22 7v10.5A2.5 2.5 0 0 1 19.5 20H17V9.5L22 7z" fill="#34A853"/>
+              <path d="M7 9.5V20h10V9.5L12 13.5 7 9.5z" fill="#FBBC05"/>
+              <path d="M4.5 4L12 9.5 19.5 4" fill="#EA4335"/>
+            </svg>
+            <svg class="intg-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="Outlook">
+              <rect x="1" y="4" width="14" height="16" rx="1.5" fill="#0078D4"/>
+              <ellipse cx="8" cy="12" rx="3.5" ry="4" fill="white" opacity="0.9"/>
+              <rect x="15" y="8" width="8" height="12" rx="1" fill="#50A0E0"/>
+              <polyline points="15,8 19,12 23,8" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <svg class="intg-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="LinkedIn">
+              <rect width="24" height="24" rx="3" fill="#0A66C2"/>
+              <rect x="4" y="9" width="3.5" height="11" fill="white"/>
+              <circle cx="5.75" cy="5.75" r="2" fill="white"/>
+              <path d="M10 9h3.5v1.5S14.5 9 17 9c2.8 0 3 2.2 3 4v7h-3.5v-6c0-1.5-.3-2.5-1.5-2.5S13 12.5 13 14v6H10V9z" fill="white"/>
+            </svg>
+            <svg class="intg-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="WhatsApp">
+              <rect width="24" height="24" rx="5" fill="#25D366"/>
+              <path d="M12 4a8 8 0 0 0-6.93 12l-1 3.5 3.6-1A8 8 0 1 0 12 4z" fill="white"/>
+              <path d="M12 5.5a6.5 6.5 0 0 0-5.63 9.75l-.87 3 3.07-.85A6.5 6.5 0 1 0 12 5.5z" fill="#25D366"/>
+              <path d="M9 8.5c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.2.3-.9 1-.9 2.3s.9 2.7 1 2.9c.1.2 1.7 2.7 4.2 3.7 2.1.8 2.5.6 2.9.6.4 0 1.3-.5 1.5-1s.2-1 .1-1.1c-.1-.1-.3-.2-.5-.3l-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.1-.3.2-.5.1-.5-.2-1.9-.7-2.9-1.9-.8-.9-1.3-2-1.4-2.2-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.3.2-.4L9 8.5z" fill="white"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="sec" id="how-it-works">
+  <p class="eyebrow">The problem</p>
+  <h2 class="h2">You know people. But do you know <span class="accent">who to ask?</span></h2>
+  <p class="sec-sub">Most people have hundreds of contacts and no way to know which ones will actually help. They broadcast to five people hoping one responds. They ask the wrong person and burn the relationship. They don&rsquo;t ask at all.</p>
+  <ul class="bullet-list">
+    <li>Who in your network can actually help right now</li>
+    <li>How to ask without overstepping</li>
+    <li>The chain of connections between you and who you need</li>
+  </ul>
+  <div style="margin-top:48px;">
+    <p class="eyebrow">How it works</p>
+    <h2 class="h2">Ask smarter, not louder.</h2>
+    <p class="sec-sub">One precise ask to the right person beats a broadcast to five hundred. SOAR makes the right person obvious.</p>
+  </div>
+  <div class="steps3">
+    <div class="s3box s1"><div class="s3-head"><span class="s3-num">01</span><h4>Type your ask in plain language</h4></div><p>No keywords to fill in, no forms to complete. Write what you need. SOAR extracts the signals &mdash; keywords, domain, context &mdash; automatically.</p></div>
+    <div class="s3box s2"><div class="s3-head"><span class="s3-num">02</span><h4>See who in your network will actually help</h4></div><p>Go beyond who you know &mdash; get matched to who&rsquo;s most likely to help. Ranked by SOAR Score and keyword match, not job titles or follower counts.</p></div>
+    <div class="s3box s3"><div class="s3-head"><span class="s3-num">03</span><h4>Send directly from SOAR</h4></div><p>Send via email or WhatsApp directly from SOAR. Your contacts receive a clean, personal message &mdash; not a broadcast.</p></div>
+    <div class="s3box" style="background:var(--soar-amber-bg);border-color:rgba(133,79,11,0.12);"><div class="s3-head"><span class="s3-num">04</span><h4 style="color:var(--soar-amber-text);">Close the loop</h4></div><p style="color:var(--soar-amber-text);">Every ask has an outcome. SOAR logs every intro, outcome, and ripple so you know exactly what happened. Your next ask is always smarter than your last.</p></div>
+  </div>
+</section>
+<section class="sec" id="groups">
+  <p class="eyebrow">Groups</p>
+  <h2 class="h2">Where trust already <span class="accent">exists.</span></h2>
+  <p class="sec-sub">Communities where every member is verified, every ask routes to the right people, and reputation compounds. Yours when you create one; theirs when you join.</p>
+  <div class="gf-card">
+    <div class="gf-head">
+      <div class="gf-meta">
+        <h3 class="gf-name">Athletes in Tech</h3>
+        <p class="gf-tagline">An open community for current and former athletes building in tech. Deal flow, peer mentorship, and an ask marketplace where everyone has skin in the game.</p>
+      </div>
+      <div class="gf-stack">
+        <div class="gf-faces">
+          <span class="gf-face f-david"></span>
+          <span class="gf-face f-sofia"></span>
+          <span class="gf-face f-ben"></span>
+          <span class="gf-face f-ann"></span>
+        </div>
+        <span class="gf-count">234 members</span>
+        <span class="gf-priv">&#9679; Public</span>
+      </div>
+    </div>
+    <div class="gf-body">
+      <div class="gf-block">
+        <p class="gf-block-label">Recent ask &middot; 2h ago</p>
+        <div class="gf-ask-row"><span class="sab-photo ben"></span><span><strong>Ben</strong> asked the group</span></div>
+        <p class="gf-ask-quote">&ldquo;Anyone here taken capital from a sports-focused VC fund? Looking for a warm intro before we close our Series A.&rdquo;</p>
+        <p class="gf-ask-meta">&uarr; <strong>4 responses</strong> &middot; 2 introductions offered</p>
+      </div>
+      <div class="gf-block">
+        <p class="gf-block-label">This month</p>
+        <div class="gf-stat-grid">
+          <div class="gf-stat"><span class="gf-stat-num">89</span><span class="gf-stat-label">asks posted</span></div>
+          <div class="gf-stat"><span class="gf-stat-num">47</span><span class="gf-stat-label">answered</span></div>
+          <div class="gf-stat"><span class="gf-stat-num">3.2h</span><span class="gf-stat-label">median response</span></div>
+          <div class="gf-stat"><span class="gf-stat-num">12</span><span class="gf-stat-label">intros made</span></div>
+        </div>
+        <div class="gf-connector"><span class="sab-photo sofia"></span><span class="gf-connector-text"><strong>Connector of the month:</strong> Sofia &mdash; 12 intros made</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="gf-others">
+    <span class="gf-other"><strong>Women in Leadership</strong> <span class="priv-chip private">&#128274; Private</span> &middot; 412 members</span>
+    <span class="gf-other"><strong>VC &amp; Founder Network</strong> <span class="priv-chip invite">&#10022; Invite-only</span> &middot; 189 members</span>
+    <span class="gf-other"><strong>Operators</strong> <span class="priv-chip public">&#9679; Public</span> &middot; 678 members</span>
+  </div>
+  <p class="gf-create">Or <strong>start your own.</strong> Any user can create a group, set the rules, invite members, and lead the ask/answer loop.</p>
+</section>
+<section class="sec" id="what-makes-soar-different">
+  <p class="eyebrow">Why SOAR</p>
+  <h2 class="h2">Built on trust signals, <span class="accent">not follower counts.</span></h2>
+  <p class="sec-sub">Five things that make SOAR fundamentally different from every other network you&rsquo;ve tried.</p>
+  <div class="diff-grid">
+    <div class="diff-tile">
+      <div class="diff-icon" style="background:var(--soar-ann-card);color:var(--soar-ann-name);">
+        <svg viewBox="0 0 20 20" fill="none" width="20" height="20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15 Q5 5 10 10 Q15 15 17 5"/><circle cx="17" cy="5" r="1.5" fill="currentColor" stroke="none"/></svg>
+      </div>
+      <h4 class="diff-title">SOAR Score</h4>
+      <p class="diff-body">Your trust-powered connection signal. Ranked by real communication history, recency, and responsiveness &mdash; not who you&rsquo;ve added.</p>
+    </div>
+    <div class="diff-tile">
+      <div class="diff-icon" style="background:var(--soar-amber-bg);color:var(--soar-amber-text);">
+        <svg viewBox="0 0 20 20" fill="none" width="20" height="20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="10,2 12.5,7.5 18.5,8.2 14,12.5 15.5,18.5 10,15.5 4.5,18.5 6,12.5 1.5,8.2 7.5,7.5"/></svg>
+      </div>
+      <h4 class="diff-title">Reputation Engine</h4>
+      <p class="diff-body">See who shows up when it matters. Every response, introduction, and completed ask builds a verifiable track record.</p>
+    </div>
+    <div class="diff-tile">
+      <div class="diff-icon" style="background:var(--soar-mint-bg);color:var(--soar-mint-text);">
+        <svg viewBox="0 0 20 20" fill="none" width="20" height="20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16V4C10 4 7 3 3 4.5V17C6 15.5 10 16 10 16Z"/><path d="M10 16V4C10 4 13 3 17 4.5V17C14 15.5 10 16 10 16Z"/><line x1="5.5" y1="8" x2="8.5" y2="7.5" stroke-width="1.2"/><line x1="5.5" y1="10.5" x2="8.5" y2="10" stroke-width="1.2"/><line x1="11.5" y1="7.5" x2="14.5" y2="8" stroke-width="1.2"/><line x1="11.5" y1="10" x2="14.5" y2="10.5" stroke-width="1.2"/></svg>
+      </div>
+      <h4 class="diff-title">Smart Address Book</h4>
+      <p class="diff-body">Filter your contacts by relationship depth, recency, keywords, and shared context. Know who to reach before you type a word.</p>
+    </div>
+    <div class="diff-tile">
+      <div class="diff-icon" style="background:var(--soar-light-sage-bg);color:var(--soar-light-sage-text);">
+        <svg viewBox="0 0 20 20" fill="none" width="20" height="20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="12" height="9" rx="2"/><path d="M7 9V6a3 3 0 0 1 6 0v3"/><circle cx="10" cy="14" r="1.2" fill="currentColor" stroke="none"/></svg>
+      </div>
+      <h4 class="diff-title">Private by Design</h4>
+      <p class="diff-body">No cold outreach. No data sold. No contacts approached without your approval. Your network stays yours.</p>
+    </div>
+    <div class="diff-tile">
+      <div class="diff-icon" style="background:var(--soar-david-card);color:var(--soar-david-name);">
+        <svg viewBox="0 0 20 20" fill="none" width="20" height="20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="5" r="2"/><circle cx="4" cy="15" r="2"/><circle cx="16" cy="15" r="2"/><line x1="10" y1="7" x2="4" y2="13"/><line x1="10" y1="7" x2="16" y2="13"/><line x1="6" y1="15" x2="14" y2="15"/></svg>
+      </div>
+      <h4 class="diff-title">Groups</h4>
+      <p class="diff-body">Verified communities where every ask routes to the right people and reputation compounds over time. Yours to create or join.</p>
+    </div>
+  </div>
+</section>
+<section class="cta-wrap">
+  <div class="cta-card">
+    <div class="cta-left">
+      <span class="cta-tag">&#10022; Limited offer</span>
+      <p class="cta-pre">Ask better.<br><span class="accent">Reply better.</span></p>
+      <h2>Three months for the <span class="accent">price of two.</span></h2>
+      <p>Get a full quarter to build your network, grow your reputation, and make asks that actually land &mdash; at the price of two months.</p>
+      <p class="cta-foot">Pay for two months &middot; Get three &middot; Private by default &middot; Cancel any time</p>
+    </div>
+    <div class="cta-right">
+      <a href="#" class="cta-button">Start with trust</a>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div><div class="l-brand"><img src="logo/soar-connect-light-v2.svg" alt="SOAR Connect"></div><p style="margin:0;">Strength of Authentic Relationships. &copy; 2026</p></div>
+  <div class="footer-col"><h5>Product</h5><a href="#">How it works</a><a href="#">Groups</a><a href="#">Blog</a></div>
+  <div class="footer-col"><h5>Legal</h5><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Cookies</a></div>
+</footer>
+</div>
+<script>
+(function(){
+  const openBtn = document.getElementById('mob-menu-open');
+  const closeBtn = document.getElementById('mob-menu-close');
+  const menu = document.getElementById('mob-menu');
+  if (!openBtn || !closeBtn || !menu) return;
+  function openMenu() { menu.classList.add('open'); document.body.style.overflow = 'hidden'; openBtn.setAttribute('aria-expanded', 'true'); closeBtn.focus(); }
+  function closeMenu() { menu.classList.remove('open'); document.body.style.overflow = ''; openBtn.setAttribute('aria-expanded', 'false'); openBtn.focus(); }
+  openBtn.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+  menu.querySelectorAll('nav a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu(); });
+  const mobLogo = menu.querySelector('.nav-logo img');
+  if (mobLogo) {
+    function syncLogo() { const dark = document.documentElement.getAttribute('data-theme') === 'dark'; mobLogo.src = dark ? 'logo/soar-connect-dark-v2.svg' : 'logo/soar-connect-light-v2.svg'; }
+    new MutationObserver(syncLogo).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    syncLogo();
+  }
+})();
+(function(){
+  const words = ['introduce you','fund you','mentor you','advise you','help you','hire you','refer you'];
+  const el = document.getElementById('typewriter-text');
+  if(!el) return;
+  const TYPE=120, DEL=70, HOLD=2800, GAP=450;
+  let i=0, c=words[0].length, phase='hold';
+  function tick(){
+    const cur = words[i];
+    if(phase==='hold'){ phase='del'; setTimeout(tick,HOLD); }
+    else if(phase==='del'){ if(c>0){ c--; el.textContent=cur.slice(0,c); setTimeout(tick,DEL); } else { i=(i+1)%words.length; c=0; phase='gap'; setTimeout(tick,GAP); } }
+    else if(phase==='gap'){ phase='type'; setTimeout(tick,0); }
+    else if(phase==='type'){ const nxt = words[i]; if(c<nxt.length){ c++; el.textContent=nxt.slice(0,c); setTimeout(tick,TYPE); } else { phase='hold'; setTimeout(tick,0); } }
+  }
+  setTimeout(tick,HOLD);
+})();
+(function(){
+  const btns = { system: document.getElementById('theme-system'), light: document.getElementById('theme-light'), dark: document.getElementById('theme-dark') };
+  const mq = window.matchMedia('(prefers-color-scheme: dark)');
+  let current = 'system';
+  function apply(){
+    let resolved;
+    if(current==='system') resolved = mq.matches ? 'dark' : 'light';
+    else resolved = current;
+    if(resolved==='dark') document.documentElement.setAttribute('data-theme','dark');
+    else document.documentElement.setAttribute('data-theme','light');
+    Object.entries(btns).forEach(([k,b])=>{ const active = k===current; b.classList.toggle('active', active); b.setAttribute('aria-pressed', active?'true':'false'); });
+  }
+  function set(mode){ current=mode; apply(); }
+  btns.system.addEventListener('click',()=>set('system'));
+  btns.light.addEventListener('click',()=>set('light'));
+  btns.dark.addEventListener('click',()=>set('dark'));
+  mq.addEventListener('change',()=>{ if(current==='system') apply(); });
+  apply();
+})();
+</script>
+</body>
+</html>
