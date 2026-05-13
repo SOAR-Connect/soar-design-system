@@ -1,3 +1,3 @@
-# Soar Design System
+# SOAR Connect Design System
 
-Canonical Next.js 15 + Tailwind + shadcn/ui registry. Scaffold in progress — see commits.
+Landing page and design assets for soarconnect.netlify.app
