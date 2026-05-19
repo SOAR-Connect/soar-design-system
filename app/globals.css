@@ -80,6 +80,19 @@
   --status-warning:       oklch(0.72  0.16  70);
   --status-error:         oklch(0.55  0.18  35);
   --status-info:          oklch(0.40  0.14  30);
+
+  /* SOAR Score tier colors (light) — semantic per design-standards-v11 */
+  --soar-low:             oklch(0.55  0.18  35);    /* red — destructive hue */
+  --soar-medium:          oklch(0.72  0.16  70);    /* gold — warning/accent hue */
+  --soar-high:            oklch(0.62  0.10  130);   /* green — success hue */
+  --soar-elite:           oklch(0.78  0.18  72);    /* lifted gold — premium */
+  --soar-glow:            oklch(0.78 0.18 72 / 0.25);
+
+  /* Group type colors (light) — public / private / circle / subgroup */
+  --group-public:         oklch(0.55  0.20  255);   /* blue */
+  --group-private:        oklch(0.40  0.14  30);    /* burgundy — uses brand */
+  --group-circle:         oklch(0.72  0.16  70);    /* gold — uses accent */
+  --group-subgroup:       oklch(0.55  0.13  50);    /* warm tan */
 }
 
 .dark {
@@ -123,6 +136,19 @@
   --status-warning:       oklch(0.78  0.16  72);
   --status-error:         oklch(0.65  0.19  35);
   --status-info:          oklch(0.62  0.16  32);
+
+  /* SOAR Score tier colors (dark) */
+  --soar-low:             oklch(0.65  0.19  35);
+  --soar-medium:          oklch(0.78  0.16  72);
+  --soar-high:            oklch(0.70  0.13  130);
+  --soar-elite:           oklch(0.84  0.18  74);
+  --soar-glow:            oklch(0.84 0.18 74 / 0.30);
+
+  /* Group type colors (dark) */
+  --group-public:         oklch(0.65  0.18  255);
+  --group-private:        oklch(0.62  0.16  32);
+  --group-circle:         oklch(0.78  0.16  72);
+  --group-subgroup:       oklch(0.65  0.10  50);
 }
 
 @theme inline {
@@ -164,6 +190,17 @@
   --color-status-warning: var(--status-warning);
   --color-status-error: var(--status-error);
   --color-status-info: var(--status-info);
+
+  /* SOAR-specific semantic tokens — Tailwind utilities */
+  --color-soar-low: var(--soar-low);
+  --color-soar-medium: var(--soar-medium);
+  --color-soar-high: var(--soar-high);
+  --color-soar-elite: var(--soar-elite);
+  --color-soar-glow: var(--soar-glow);
+  --color-group-public: var(--group-public);
+  --color-group-private: var(--group-private);
+  --color-group-circle: var(--group-circle);
+  --color-group-subgroup: var(--group-subgroup);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

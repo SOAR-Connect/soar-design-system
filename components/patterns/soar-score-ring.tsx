@@ -1,34 +1,44 @@
 "use client";
 import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn, clamp } from "@/lib/utils";
+import { getSoarTier, SOAR_TIER_TOKENS, type SoarTier } from "@/lib/soar";
 
 /**
  * Soar Score Ring — 80×80 arc ring + numeric score + "Score" label.
- * Per design-standards-v11 §24.
+ * Per design-standards-v11 §24 and §11.
  *
  * Score is 0–100. The ring fills proportionally; underlying track stays
- * visible. Color is brand-primary by default; override via `color` prop.
+ * visible. Color is **tier-derived by default** (low/medium/high/elite)
+ * via getSoarTier(score); override with `color` prop to force a value.
  */
 export interface SoarScoreRingProps extends React.HTMLAttributes<HTMLDivElement> {
   score: number;
   size?: number; // px; default 80
   thickness?: number; // px; default 6
-  color?: string; // CSS color or token; default var(--primary)
-  trackColor?: string; // default var(--muted)
-  showLabel?: boolean; // show "Score" label under number
+  /** CSS color or token; default is tier-derived from score */
+  color?: string;
+  /** Track ring color; default var(--muted) */
+  trackColor?: string;
+  /** Show "Score" label under the number */
+  showLabel?: boolean;
+  /** Override the auto-detected tier (useful for showcase / Storybook) */
+  forceTier?: SoarTier;
 }
 
 export function SoarScoreRing({
   score,
   size = 80,
   thickness = 6,
-  color = "oklch(0.40 0.14 30)",
-  trackColor = "oklch(0.94 0.025 75)",
+  color,
+  trackColor = "var(--muted)",
   showLabel = true,
+  forceTier,
   className,
   ...rest
 }: SoarScoreRingProps) {
-  const clamped = Math.max(0, Math.min(100, Math.round(score)));
+  const clamped = Math.round(clamp(score, 0, 100));
+  const tier = forceTier ?? getSoarTier(clamped);
+  const resolvedColor = color ?? SOAR_TIER_TOKENS[tier];
   const radius = (size - thickness) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (clamped / 100) * circumference;
@@ -42,7 +52,8 @@ export function SoarScoreRing({
       aria-valuenow={clamped}
       aria-valuemin={0}
       aria-valuemax={100}
-      aria-label={`Soar Score: ${clamped} out of 100`}
+      aria-label={`Soar Score: ${clamped} out of 100 (${tier} tier)`}
+      data-tier={tier}
       {...rest}
     >
       <svg width={size} height={size} className="-rotate-90 transform">
@@ -58,7 +69,7 @@ export function SoarScoreRing({
           cx={center}
           cy={center}
           r={radius}
-          stroke={color}
+          stroke={resolvedColor}
           strokeWidth={thickness}
           strokeLinecap="round"
           fill="none"
