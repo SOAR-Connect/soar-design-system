@@ -1,0 +1,32 @@
+name: SOAR CI
+on:
+  push:
+    branches:
+      - 'soar-*'
+    paths:
+      - '**/*.html'
+      - 'test-*.js'
+      - 'tests/**'
+      - '.github/workflows/soar-ci.yml'
+concurrency:
+  group: soar-ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  playwright:
+    runs-on: [self-hosted, macOS, M5]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm ci || npm install
+      - name: Ensure Playwright browsers
+        run: npx playwright install --with-deps chromium
+      - name: Run Playwright tests
+        run: npx playwright test
+      - name: Upload report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
