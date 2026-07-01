@@ -34,9 +34,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Lint
-        run: pnpm lint
-
+      # Do not run `pnpm lint` yet. This repo currently has a Next 15 app
+      # but no ESLint flat config; the existing `next lint` script is not a
+      # reliable CI gate until linting is configured in a dedicated PR.
       - name: Type check
         run: pnpm exec tsc --noEmit
 
