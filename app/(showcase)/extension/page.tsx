@@ -23,7 +23,7 @@ export default function ExtensionPage() {
           {state === "idle" && (<><Sparkles className="size-10 text-primary" /><div><p className="text-body-medium text-card-foreground">Save this profile?</p><p className="mt-1 text-caption text-muted-foreground">linkedin.com/in/jmaxwell</p></div><Button>Save to network</Button></>)}
           {state === "loading" && <><Loader2 className="size-10 animate-spin text-primary" /><p className="text-body-sm text-muted-foreground">Saving…</p></>}
           {state === "success" && (<><div className="flex size-12 items-center justify-center rounded-full bg-status-success text-primary-foreground"><Check className="size-6" /></div><p className="text-body-medium text-card-foreground">Saved to network</p><p className="text-caption text-muted-foreground">Jordan Maxwell · GP at Sequoia</p><Button variant="outline" size="sm">View in SOAR</Button></>)}
-          {state === "error" && (<><div className="flex size-12 items-center justify-center rounded-full bg-status-error text-primary-foreground"><AlertCircle className="size-6" /></div><p className="text-body-medium text-card-foreground">Couldn't save</p><p className="text-caption text-muted-foreground">Network error — try again in a moment.</p><Button>Retry</Button></>)}
+          {state === "error" && (<><div className="flex size-12 items-center justify-center rounded-full bg-status-error text-primary-foreground"><AlertCircle className="size-6" /></div><p className="text-body-medium text-card-foreground">Couldn&apos;t save</p><p className="text-caption text-muted-foreground">Network error — try again in a moment.</p><Button>Retry</Button></>)}
         </div>
       </Card>
     </main>

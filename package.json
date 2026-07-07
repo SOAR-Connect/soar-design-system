@@ -16,8 +16,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "registry:build": "tsx scripts/build-registry.ts",
-    "prebuild": "pnpm registry:build",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"

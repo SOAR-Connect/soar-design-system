@@ -14,11 +14,11 @@ export const user = {
 } as const;
 
 export const sidebarPlatform = [
-  { id: "dashboard",     label: "Dashboard",     href: "/dashboard-v2",  iconKey: "dashboard" as const, badge: undefined as string | undefined },
-  { id: "inbox",         label: "Inbox",         href: "/inbox",         iconKey: "inbox" as const,     badge: "12" },
-  { id: "asks",          label: "Asks",          href: "/asks",          iconKey: "sparkles" as const,  badge: "5" },
-  { id: "connections",   label: "Connections",   href: "/connections",   iconKey: "users" as const,     badge: "320" },
-  { id: "notifications", label: "Notifications", href: "/notifications", iconKey: "bell" as const,      badge: "3" },
+  { id: "dashboard",     label: "Dashboard",     href: "/dashboard-v2",  iconKey: "dashboard" as const, badge: undefined as string | undefined, active: true },
+  { id: "inbox",         label: "Inbox",         href: "/inbox",         iconKey: "inbox" as const,     badge: "12", active: false },
+  { id: "asks",          label: "Asks",          href: "/asks",          iconKey: "sparkles" as const,  badge: "5", active: false },
+  { id: "connections",   label: "Connections",   href: "/connections",   iconKey: "users" as const,     badge: "320", active: false },
+  { id: "notifications", label: "Notifications", href: "/notifications", iconKey: "bell" as const,      badge: "3", active: false },
 ];
 
 export const sidebarWorkspaces = [
