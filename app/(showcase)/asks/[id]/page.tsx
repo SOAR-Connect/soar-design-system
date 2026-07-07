@@ -23,7 +23,7 @@ export default function AskDetailPage() {
               <div className="ml-auto flex gap-2"><Button variant="outline" size="sm"><Share2 /> Share</Button><Button size="sm">Mark complete</Button></div>
             </div>
             <h1 className="mb-3 text-h1 text-foreground" style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}>Looking for a fractional CTO with 10+ years experience</h1>
-            <p className="text-body text-card-foreground">We're a Series A B2B SaaS scaling to 50 customers. Need someone 2 days/week to advise our early eng team and architect for the next 6 months. Background in distributed systems + eng leadership preferred.</p>
+            <p className="text-body text-card-foreground">We&apos;re a Series A B2B SaaS scaling to 50 customers. Need someone 2 days/week to advise our early eng team and architect for the next 6 months. Background in distributed systems + eng leadership preferred.</p>
             <div className="mt-4 flex flex-wrap gap-2">{["Engineering", "Fractional", "Series A", "B2B SaaS"].map((t) => (<Badge key={t} variant="outline" className="rounded-full">{t}</Badge>))}</div>
           </Card>
           <Card className="rounded-2xl">

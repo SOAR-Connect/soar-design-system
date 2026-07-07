@@ -8,6 +8,7 @@ import { type AccentColor, user } from "../../_data/shared";
 export { accentVar } from "../../_data/shared";
 export type { AccentColor };
 export { user };
+export { sidebarPlatform, sidebarWorkspaces } from "../../_data/shared";
 
 export const greeting = {
   greeting: "Good morning, Irene",

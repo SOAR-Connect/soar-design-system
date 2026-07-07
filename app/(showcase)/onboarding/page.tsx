@@ -73,7 +73,7 @@ function renderStep(id: typeof steps[number]["id"]) {
   if (id === "welcome") {
     return (
       <Card className="rounded-2xl p-8 text-center">
-        <p className="text-body text-card-foreground">SOAR turns your scattered relationship data into a private, queryable network. You'll never lose another connection.</p>
+        <p className="text-body text-card-foreground">SOAR turns your scattered relationship data into a private, queryable network. You&apos;ll never lose another connection.</p>
       </Card>
     );
   }
@@ -94,8 +94,8 @@ function renderStep(id: typeof steps[number]["id"]) {
     return (
       <Card className="rounded-2xl p-8 text-center">
         <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-status-success text-primary-foreground"><Check className="size-8" /></div>
-        <p className="text-h3 text-card-foreground" style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}>You're set, Irene</p>
-        <p className="mt-2 text-body text-muted-foreground">Your network is being indexed. We'll notify you when your dashboard is ready.</p>
+        <p className="text-h3 text-card-foreground" style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}>You&apos;re set, Irene</p>
+        <p className="mt-2 text-body text-muted-foreground">Your network is being indexed. We&apos;ll notify you when your dashboard is ready.</p>
       </Card>
     );
   }

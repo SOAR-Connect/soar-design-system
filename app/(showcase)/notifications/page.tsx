@@ -54,7 +54,7 @@ export default function NotificationsPage() {
         <header className="flex items-end gap-4">
           <div className="flex min-w-0 flex-1 flex-col gap-1">
             <h1 className="text-h1 text-foreground" style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}>Notifications</h1>
-            <p className="text-body-sm text-muted-foreground">3 unread · You're all caught up after this</p>
+            <p className="text-body-sm text-muted-foreground">3 unread · You&apos;re all caught up after this</p>
           </div>
           <div className="flex shrink-0 items-center gap-2">
             <ThemeToggle />
