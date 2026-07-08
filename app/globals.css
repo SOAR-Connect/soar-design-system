@@ -5,22 +5,35 @@
 
 /* ============================================================
  * SOAR Connect — Foundation v2 tokens (single source of truth)
- * Synced from Figma "🚀 Foundation" page (file 0u7EjU8sbCqCBmgPN7ufBO).
+ * Synced from Figma "🎨 Design System" page (file 0u7EjU8sbCqCBmgPN7ufBO).
  *
- * Colors are expressed in OKLCH (shadcn v3 convention) for better
- * color manipulation. Original Figma hex values are preserved as
- * inline comments so designers can verify against the source.
+ * Source-of-truth precedence:
+ *   • Color, spacing, radius:   PRODUCTION (soarconnect.netlify.app) wins
+ *   • Typography (families):    FIGMA wins — EB Garamond + Albert Sans
+ *   • Component anatomy:        FIGMA wins
+ *
+ * The live landing page currently uses Inter for body. That's treated
+ * as a production drift to fix downstream — Figma is the design source
+ * of truth for type. Owner: David.
  *
  * Tokens Studio mirror: /tokens/soar.tokens.json
+ *
+ * 2026-05-11 coherence pass (round 2 final):
+ *   - Color reconciled to live production hex values
+ *   - Body font: Albert Sans (Figma canonical, not Inter)
+ *   - Heading font: EB Garamond (Figma canonical, not Fraunces)
+ *   - Radius scale aligned to live: md=6, lg=10
+ *   - New tokens from live: --primary-hover, --amber, --amber-soft, --amber-text, --gold
+ *   - Status palette uses production hues (gradient-card-derived)
  * ============================================================ */
 
 :root {
   /* Radii ---------------------------------------------------- */
-  --radius-xs: 4px;
-  --radius-sm: 8px;
-  --radius-md: 10px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;     /* live --radius */
+  --radius-lg: 10px;    /* live --radius-lg */
+  --radius-xl: 14px;
   --radius-2xl: 20px;
   --radius-full: 9999px;
   --radius: var(--radius-md); /* shadcn alias */
@@ -40,99 +53,125 @@
   --space-18: 72px;
 
   /* Type families ------------------------------------------- */
-  --font-heading: "Fraunces", ui-serif, Georgia, serif;
-  --font-body: "Geist", ui-sans-serif, system-ui, sans-serif;
+  /* Figma is the canonical source of truth for type. Live site
+   * currently renders Inter — that's a production drift to fix
+   * downstream, not propagate here. */
+  --font-heading: "EB Garamond", ui-serif, Georgia, serif;
+  --font-body: "Albert Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  /* LIGHT — semantic colors (hex shown for designer reference) */
-  --background:             oklch(0.975 0.013 82.4);  /* #fbf6ed */
-  --foreground:             oklch(0.213 0.045 40.4);  /* #2a1108 */
-  --card:                   oklch(0.983 0.011 84.6);  /* #fdf9f1 */
-  --card-foreground:        oklch(0.213 0.045 40.4);  /* #2a1108 */
-  --popover:                oklch(0.983 0.011 84.6);  /* #fdf9f1 */
-  --popover-foreground:     oklch(0.213 0.045 40.4);  /* #2a1108 */
-  --primary:                oklch(0.420 0.144 28.0);  /* #8b1f1a */
-  --primary-foreground:     oklch(0.975 0.013 82.4);  /* #fbf6ed */
-  --secondary:              oklch(0.887 0.046 80.0);  /* #ead7b8 */
-  --secondary-foreground:   oklch(0.213 0.045 40.4);  /* #2a1108 */
-  --muted:                  oklch(0.928 0.026 82.4);  /* #f0e6d4 */
-  --muted-foreground:       oklch(0.490 0.058 56.1);  /* #7a5840 */
-  --accent:                 oklch(0.748 0.154 72.4);  /* #e89b1a */
-  --accent-foreground:      oklch(0.213 0.045 40.4);  /* #2a1108 */
-  --destructive:            oklch(0.563 0.170 36.5);  /* #c4451f */
-  --destructive-foreground: oklch(0.975 0.013 82.4);  /* #fbf6ed */
-  --border:                 oklch(0.873 0.040 80.9);  /* #e3d3b8 */
-  --input:                  oklch(0.873 0.040 80.9);  /* #e3d3b8 */
-  --ring:                   oklch(0.420 0.144 28.0);  /* #8b1f1a */
+  /* LIGHT — production palette ------------------------------ */
+  /* Base */
+  --background:             #fbf6ed;
+  --foreground:             #0c1626;
+  --card:                   #fdf9f1;
+  --card-foreground:        #0c1626;
+  --popover:                #fdf9f1;
+  --popover-foreground:     #0c1626;
+  --muted:                  #f4efe5;
+  --muted-foreground:       #7a5840;
+  --border:                 #ead7b8;
+  --input:                  #ead7b8;
+  --secondary:              #ead7b8;
+  --secondary-foreground:   #0c1626;
 
-  /* LIGHT — sidebar surface --------------------------------- */
-  --sidebar:                oklch(0.953 0.014 84.6);  /* #f4efe5 */
-  --sidebar-foreground:     oklch(0.200 0.036 259.5); /* #0c1626 */
-  --sidebar-accent:         oklch(0.923 0.025 86.9);  /* #ede5d3 */
-  --sidebar-border:         oklch(0.876 0.028 83.5);  /* #dfd5c2 */
+  /* Brand */
+  --primary:                #8b1f1a;     /* Soar rose, primary action */
+  --primary-foreground:     #fdf9f1;
+  --primary-hover:          #7a1816;
+  --accent:                 #f7e8c8;     /* amber-soft surface */
+  --accent-foreground:      #5a3800;     /* amber-text */
+  --destructive:            #c4451f;
+  --destructive-foreground: #fdf9f1;
+  --ring:                   #8b1f1a;
 
-  /* LIGHT — brand accent palette ---------------------------- */
-  --accent-blue:            oklch(0.273 0.063 252.6); /* #0d2845 */
-  --accent-indigo:          oklch(0.427 0.066 260.8); /* #3a4f73 */
-  --accent-green:           oklch(0.551 0.076 139.8); /* #5a7d52 */
-  --accent-amber:           oklch(0.748 0.154 72.4);  /* #e89b1a */
-  --accent-rose:            oklch(0.526 0.129 30.9);  /* #a8493a */
-  --accent-violet:          oklch(0.507 0.078 298.6); /* #6b5b8c */
+  /* Amber action family (live tokens kept distinct from --accent surface) */
+  --amber:                  #e89b1a;     /* bright amber action */
+  --amber-soft:             #f7e8c8;     /* same as --accent */
+  --amber-text:             #5a3800;     /* same as --accent-foreground */
+  --gold:                   #f5b429;     /* hover/highlight on amber buttons */
 
-  /* LIGHT — status ----------------------------------------- */
-  --status-success:         oklch(0.551 0.076 139.8); /* #5a7d52 */
-  --status-warning:         oklch(0.652 0.132 81.6);  /* #b8860b */
-  --status-error:           oklch(0.543 0.174 29.7);  /* #c0392b */
-  --status-info:            oklch(0.273 0.063 252.6); /* #0d2845 */
+  /* Sidebar surface ---------------------------------------- */
+  --sidebar:                #f4efe5;
+  --sidebar-foreground:     #0c1626;
+  --sidebar-accent:         #ead7b8;
+  --sidebar-border:         #e3d3b8;
 
-  /* LIGHT — misc ------------------------------------------- */
-  --badge-help:             oklch(0.748 0.154 72.4);  /* #e89b1a */
+  /* Brand accent palette (decorative) ----------------------- */
+  --accent-blue:            #0d2845;
+  --accent-indigo:          #3a4f73;
+  --accent-green:           #5a7d52;
+  --accent-amber:           #e89b1a;
+  --accent-rose:            #8b1f1a;
+  --accent-violet:          #6b5b8c;
+
+  /* Status (aligned with live gradient-card hues) ---------- */
+  --status-success:         #1a5e35;
+  --status-warning:         #e89b1a;
+  --status-error:           #c4451f;
+  --status-info:            #1a4070;
+
+  /* Misc --------------------------------------------------- */
+  --badge-help:             #f7e8c8;
 
   /* Shadow (Figma "site" effect) --------------------------- */
   --shadow-site: 0 0 34px 10px rgb(0 0 0 / 0.10);
+  --shadow-elevation-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+  --shadow-elevation-md: 0 4px 12px -2px rgb(0 0 0 / 0.06);
+
+  /* Motion (from live tokens) ------------------------------ */
+  --duration-fast:   120ms;
+  --duration-normal: 200ms;
 }
 
 .dark {
-  --radius-xs: 0; /* Only radius that flips per Figma */
+  --radius-xs: 0;
 
-  --background:             oklch(0.164 0.032 21.2);  /* #1a0808 */
-  --foreground:             oklch(0.947 0.028 81.5);  /* #f7ecd9 */
-  --card:                   oklch(0.197 0.034 44.6);  /* #221008 */
-  --card-foreground:        oklch(0.947 0.028 81.5);  /* #f7ecd9 */
-  --popover:                oklch(0.231 0.031 39.2);  /* #2a1812 */
-  --popover-foreground:     oklch(0.947 0.028 81.5);  /* #f7ecd9 */
-  --primary:                oklch(0.584 0.168 30.0);  /* #cc4a3a */
-  --primary-foreground:     oklch(0.164 0.032 21.2);  /* #1a0808 */
-  --secondary:              oklch(0.276 0.043 37.9);  /* #3a2018 */
-  --secondary-foreground:   oklch(0.947 0.028 81.5);  /* #f7ecd9 */
-  --muted:                  oklch(0.231 0.031 39.2);  /* #2a1812 */
-  --muted-foreground:       oklch(0.667 0.053 74.6);  /* #a89070 */
-  --accent:                 oklch(0.821 0.142 79.6);  /* #f5b94a */
-  --accent-foreground:      oklch(0.164 0.032 21.2);  /* #1a0808 */
-  --destructive:            oklch(0.640 0.191 36.1);  /* #e8542a */
-  --destructive-foreground: oklch(0.947 0.028 81.5);  /* #f7ecd9 */
-  --border:                 oklch(0.285 0.040 49.2);  /* #3a2418 */
-  --input:                  oklch(0.285 0.040 49.2);  /* #3a2418 */
-  --ring:                   oklch(0.584 0.168 30.0);  /* #cc4a3a */
+  --background:             #0c1626;
+  --foreground:             #fbf6ed;
+  --card:                   #172238;
+  --card-foreground:        #fbf6ed;
+  --popover:                #172238;
+  --popover-foreground:     #fbf6ed;
+  --muted:                  #1a2538;
+  --muted-foreground:       #a89070;
+  --border:                 #1a2538;
+  --input:                  #1a2538;
+  --secondary:              #1a2538;
+  --secondary-foreground:   #fbf6ed;
 
-  --sidebar:                oklch(0.200 0.036 259.5); /* #0c1626 */
-  --sidebar-foreground:     oklch(0.959 0.013 86.8);  /* #f5f1e8 */
-  --sidebar-accent:         oklch(0.253 0.045 263.3); /* #172238 */
-  --sidebar-border:         oklch(0.264 0.039 261.0); /* #1a2538 */
+  --primary:                #cc4a3a;
+  --primary-foreground:     #fbf6ed;
+  --primary-hover:          #a83a2a;
+  --accent:                 #5a3800;
+  --accent-foreground:      #f7e8c8;
+  --destructive:            #e8542a;
+  --destructive-foreground: #fbf6ed;
+  --ring:                   #cc4a3a;
 
-  --accent-blue:            oklch(0.639 0.074 252.2); /* #6b8fb8 */
-  --accent-indigo:          oklch(0.644 0.064 265.8); /* #7b8db5 */
-  --accent-green:           oklch(0.695 0.072 139.2); /* #86a87d */
-  --accent-amber:           oklch(0.821 0.142 79.6);  /* #f5b94a */
-  --accent-rose:            oklch(0.661 0.100 31.7);  /* #c87b6c */
-  --accent-violet:          oklch(0.674 0.083 296.4); /* #9b8cc4 */
+  --amber:                  #e89b1a;
+  --amber-soft:             #5a3800;
+  --amber-text:             #f7e8c8;
+  --gold:                   #f5b429;
 
-  --status-success:         oklch(0.695 0.072 139.2); /* #86a87d */
-  --status-warning:         oklch(0.752 0.142 87.9);  /* #d4a82a */
-  --status-error:           oklch(0.631 0.194 29.4);  /* #e74c3c */
-  --status-info:            oklch(0.639 0.074 252.2); /* #6b8fb8 */
+  --sidebar:                #0c1626;
+  --sidebar-foreground:     #fbf6ed;
+  --sidebar-accent:         #172238;
+  --sidebar-border:         #1a2538;
 
-  --badge-help:             oklch(0.821 0.142 79.6);  /* #f5b94a */
+  --accent-blue:            #6b8fb8;
+  --accent-indigo:          #7b8db5;
+  --accent-green:           #86a87d;
+  --accent-amber:           #f5b94a;
+  --accent-rose:            #c87b6c;
+  --accent-violet:          #9b8cc4;
+
+  --status-success:         #86a87d;
+  --status-warning:         #f5b429;
+  --status-error:           #e74c3c;
+  --status-info:            #6b8fb8;
+
+  --badge-help:             #5a3800;
 }
 
 /* Tailwind 4 theme bridge — exposes vars as utility classes */
@@ -145,6 +184,7 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -156,6 +196,11 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+  --color-amber-text: var(--amber-text);
+  --color-gold: var(--gold);
 
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
@@ -211,21 +256,22 @@
 }
 
 @layer utilities {
-  .text-display          { font: 700 48px/56px var(--font-heading); letter-spacing: -1px; }
-  .text-h1               { font: 700 36px/44px var(--font-heading); letter-spacing: -0.5px; }
-  .text-h2               { font: 700 24px/32px var(--font-heading); letter-spacing: -0.25px; }
-  .text-h3               { font: 700 18px/24px var(--font-heading); }
-  .text-h4               { font: 700 16px/24px var(--font-heading); }
+  /* Canonical text ramp — mirrors Figma text/* styles exactly */
+  .text-display          { font: 600 48px/56px var(--font-heading); letter-spacing: -1px; }
+  .text-h1               { font: 600 36px/44px var(--font-heading); letter-spacing: -0.5px; }
+  .text-h2               { font: 600 24px/32px var(--font-heading); letter-spacing: -0.25px; }
+  .text-h3               { font: 600 18px/24px var(--font-heading); }
+  .text-h4               { font: 600 16px/24px var(--font-heading); }
   .text-body-lg          { font: 400 16px/24px var(--font-body); }
   .text-body-lg-medium   { font: 500 16px/24px var(--font-body); }
   .text-body             { font: 400 14px/20px var(--font-body); }
   .text-body-medium      { font: 500 14px/20px var(--font-body); }
-  .text-body-semibold    { font: 700 14px/20px var(--font-body); }
+  .text-body-semibold    { font: 600 14px/20px var(--font-body); }
   .text-body-sm          { font: 400 13px/18px var(--font-body); }
   .text-body-sm-medium   { font: 500 13px/18px var(--font-body); }
   .text-small            { font: 400 12px/16px var(--font-body); }
   .text-small-medium     { font: 500 12px/16px var(--font-body); }
-  .text-small-semibold   { font: 700 12px/16px var(--font-body); }
+  .text-small-semibold   { font: 600 12px/16px var(--font-body); }
   .text-caption          { font: 400 11px/14px var(--font-body); }
   .text-caption-medium   { font: 500 11px/14px var(--font-body); }
   .text-overline         { font: 500 10px/14px var(--font-body); letter-spacing: 0.6px; text-transform: uppercase; }
